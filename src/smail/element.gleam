@@ -1,5 +1,5 @@
-import lustremail/attribute.{type Attribute}
-import lustremail/vdom/vnode
+import smail/attribute.{type Attribute}
+import smail/vdom/vnode
 
 // TYPES -----------------------------------------------------------------------
 

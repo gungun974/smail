@@ -3,10 +3,10 @@ import gleam/erlang/application
 import gleam/option.{Some}
 import lumenmail/message
 import lumenmail/smtp
-import lustremail/attribute
-import lustremail/element.{type Element}
-import lustremail/element/html
-import lustremail/email
+import smail/attribute
+import smail/element.{type Element}
+import smail/element/html
+import smail/email
 import simplifile
 
 pub fn main() {

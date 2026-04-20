@@ -1,12 +1,12 @@
-# lustremail
+# smail
 
 Write HTML compliant email with peace of mind and [Lustre](https://hex.pm/packages/lustre) 😌
 
-[![Package Version](https://img.shields.io/hexpm/v/lustremail)](https://hex.pm/packages/lustremail)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/lustremail/)
+[![Package Version](https://img.shields.io/hexpm/v/smail)](https://hex.pm/packages/smail)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/smail/)
 
 ```sh
-gleam add lustremail@1
+gleam add smail@1
 
 ```
 ```gleam
@@ -14,7 +14,7 @@ import gleam/io
 import gleam/option.{Some}
 import lustre/attribute
 import lustre/element/html
-import lustremail/email
+import smail/email
 
 pub fn main() {
   email.html([attribute.lang("en"), attribute.dir("ltr")], [
@@ -85,7 +85,7 @@ pub fn main() {
                   #("color", "#1e1e1e"),
                   #("padding", "12px 32px 11px"),
                 ],
-                [attribute.href("https://hexdocs.pm/lustremail")],
+                [attribute.href("https://hexdocs.pm/smail")],
                 [html.text("Get started")],
               ),
             ]),
@@ -99,4 +99,4 @@ pub fn main() {
 }
 ```
 
-Further documentation can be found at <https://hexdocs.pm/lustremail>.
+Further documentation can be found at <https://hexdocs.pm/smail>.

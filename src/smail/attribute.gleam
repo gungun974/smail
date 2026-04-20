@@ -1,6 +1,6 @@
 import gleam/int
 import gleam/string
-import lustremail/vdom/vattr
+import smail/vdom/vattr
 
 pub type Attribute =
   vattr.Attribute

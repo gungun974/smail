@@ -14,18 +14,18 @@ import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/result
 import gleam/string
-import lustremail/attribute.{type Attribute}
-import lustremail/element.{type Element}
-import lustremail/element/html
-import lustremail/vdom/vattr
-import lustremail/vdom/vnode
+import smail/attribute.{type Attribute}
+import smail/element.{type Element}
+import smail/element/html
+import smail/vdom/vattr
+import smail/vdom/vnode
 
 /// Converts an element to a string with XHTML 1.0 doctype.
 ///
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.html([], [
@@ -48,7 +48,7 @@ pub fn to_html(el: Element) -> String {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 ///
 /// email.html([], [
 ///   email.head([], []),
@@ -70,7 +70,7 @@ pub fn html(attrs: List(Attribute), children: List(Element)) {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.head([], [
@@ -216,7 +216,7 @@ fn font_style_to_string(style: FontStyle) -> String {
 ///
 /// ```gleam
 /// import gleam/option
-/// import lustremail/email
+/// import smail/email
 ///
 /// email.font(
 ///   family: "Josefin Sans",
@@ -320,7 +320,7 @@ fn extract_styles_loop(
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.body(
@@ -380,7 +380,7 @@ pub fn body(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.body([], [], [
@@ -417,7 +417,7 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.container([], [
@@ -456,7 +456,7 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/attribute
 ///
 /// email.img([
@@ -481,7 +481,7 @@ pub fn img(attrs: List(Attribute)) {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.text([], [
@@ -507,7 +507,7 @@ pub fn text(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.section([], [
@@ -531,7 +531,7 @@ pub fn hr(attrs: List(Attribute)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/attribute
 /// import lustre/element/html
 ///
@@ -562,7 +562,7 @@ const whitespace_codes = "\u{00A0}\u{200C}\u{200B}\u{200D}\u{200E}\u{200F}\u{FEF
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 ///
 /// email.html([], [
 ///   email.head([], []),
@@ -682,7 +682,7 @@ fn parse_padding(styles: List(#(String, String))) -> #(Int, Int, Int, Int) {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/attribute
 /// import lustre/element/html
 ///
@@ -810,7 +810,7 @@ pub fn h3(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/element/html
 ///
 /// email.row([], [
@@ -838,7 +838,7 @@ pub fn row(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/attribute
 /// import lustre/element/html
 ///
@@ -861,7 +861,7 @@ pub fn column(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ## Example
 ///
 /// ```gleam
-/// import lustremail/email
+/// import smail/email
 /// import lustre/attribute
 /// import lustre/element/html
 ///

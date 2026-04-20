@@ -1,8 +1,8 @@
 // IMPORTS ---------------------------------------------------------------------
 
-import lustremail/attribute.{type Attribute}
-import lustremail/element.{type Element, element}
-import lustremail/internals/constants
+import smail/attribute.{type Attribute}
+import smail/element.{type Element, element}
+import smail/internals/constants
 
 // HTML ELEMENTS: MAIN ROOT ----------------------------------------------------
 

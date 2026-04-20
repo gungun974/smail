@@ -4,7 +4,7 @@ import gleam/list
 import gleam/string
 import gleam/string_tree.{type StringTree}
 import houdini
-import lustremail/vdom/vattr.{type Attribute}
+import smail/vdom/vattr.{type Attribute}
 
 // TYPES -----------------------------------------------------------------------
 
@@ -120,9 +120,9 @@ pub fn to_string_tree(node: Element) -> StringTree {
     }
 
     Fragment(children:) -> {
-      marker_comment("lustremail:fragment")
+      marker_comment("smail:fragment")
       |> children_to_string_tree(children)
-      |> string_tree.append_tree(marker_comment("/lustremail:fragment"))
+      |> string_tree.append_tree(marker_comment("/smail:fragment"))
     }
   }
 }
@@ -205,7 +205,7 @@ fn do_to_snapshot_builder(
     }
 
     Fragment(children:) if debug -> {
-      marker_comment("lustremail:fragment")
+      marker_comment("smail:fragment")
       |> string_tree.prepend(spaces)
       |> string_tree.append("\n")
       |> children_to_snapshot_builder(
@@ -215,7 +215,7 @@ fn do_to_snapshot_builder(
         indent: indent + 1,
       )
       |> string_tree.append(spaces)
-      |> string_tree.append_tree(marker_comment("/lustremail:fragment"))
+      |> string_tree.append_tree(marker_comment("/smail:fragment"))
     }
 
     Fragment(children:) ->

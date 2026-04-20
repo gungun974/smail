@@ -5,7 +5,7 @@ import gleam/order.{type Order}
 import gleam/string
 import gleam/string_tree.{type StringTree}
 import houdini
-import lustremail/internals/constants
+import smail/internals/constants
 
 // TYPES -----------------------------------------------------------------------
 

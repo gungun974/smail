@@ -1,9 +1,9 @@
-name = "lustremail"
+name = "smail"
 version = "1.0.0"
 
-description = "Write HTML compliant email with peace of mind and Lustre 😌"
+description = "Write HTML compliant email with peace of mind like Lustre 😌"
 licences = ["Apache-2.0"]
-repository = { type = "github", user = "gungun974", repo = "lustremail" }
+repository = { type = "github", user = "gungun974", repo = "smail" }
 
 [dependencies]
 gleam_stdlib = ">= 0.44.0 and < 2.0.0"
