@@ -14,9 +14,9 @@ import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/result
 import gleam/string
-import lustre/attribute.{type Attribute}
-import lustre/element.{type Element}
-import lustre/element/html
+import lustremail/attribute.{type Attribute}
+import lustremail/element.{type Element}
+import lustremail/element/html
 
 /// Converts an element to a string with XHTML 1.0 doctype.
 ///
@@ -34,7 +34,7 @@ import lustre/element/html
 /// // -> "<!DOCTYPE html PUBLIC ...><html>...</html>"
 /// ```
 ///
-pub fn to_html(el: Element(msg)) -> String {
+pub fn to_html(el: Element) -> String {
   element.to_document_string(el)
   |> string.replace(
     "<!doctype html>",
@@ -57,7 +57,7 @@ pub fn to_html(el: Element(msg)) -> String {
 /// ])
 /// ```
 ///
-pub fn html(attrs: List(Attribute(msg)), children: List(Element(msg))) {
+pub fn html(attrs: List(Attribute), children: List(Element)) {
   html.html(attrs, children)
 }
 
@@ -82,10 +82,7 @@ pub fn html(attrs: List(Attribute(msg)), children: List(Element(msg))) {
 /// ])
 /// ```
 ///
-pub fn head(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn head(attrs: List(Attribute), children: List(Element)) -> Element {
   html.head(attrs, [
     html.meta([
       attribute.content("text/html; charset=UTF-8"),
@@ -304,9 +301,9 @@ pub fn font(
 ///
 pub fn body(
   styles: List(#(String, String)),
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+  attrs: List(Attribute),
+  children: List(Element),
+) -> Element {
   html.body(
     [
       attribute.styles(
@@ -364,10 +361,7 @@ pub fn body(
 /// ])
 /// ```
 ///
-pub fn container(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
@@ -407,10 +401,7 @@ pub fn container(
 /// ])
 /// ```
 ///
-pub fn section(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
@@ -446,7 +437,7 @@ pub fn section(
 /// ])
 /// ```
 ///
-pub fn img(attrs: List(Attribute(msg))) {
+pub fn img(attrs: List(Attribute)) {
   html.img([
     attribute.style("display", "block"),
     attribute.style("outline", "none"),
@@ -469,10 +460,7 @@ pub fn img(attrs: List(Attribute(msg))) {
 /// ])
 /// ```
 ///
-pub fn text(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn text(attrs: List(Attribute), children: List(Element)) -> Element {
   html.p(
     [
       attribute.style("font-size", "14px"),
@@ -500,7 +488,7 @@ pub fn text(
 /// ])
 /// ```
 ///
-pub fn hr(attrs: List(Attribute(msg))) -> Element(msg) {
+pub fn hr(attrs: List(Attribute)) -> Element {
   html.hr([
     attribute.style("width", "100%"),
     attribute.style("border", "none"),
@@ -524,10 +512,7 @@ pub fn hr(attrs: List(Attribute(msg))) -> Element(msg) {
 /// )
 /// ```
 ///
-pub fn link(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn link(attrs: List(Attribute), children: List(Element)) -> Element {
   html.a(
     [
       attribute.target("_blank"),
@@ -559,7 +544,7 @@ const whitespace_codes = "\u{00A0}\u{200C}\u{200B}\u{200D}\u{200E}\u{200F}\u{FEF
 /// ])
 /// ```
 ///
-pub fn preview(text: String) -> Element(msg) {
+pub fn preview(text: String) -> Element {
   let truncated = string.slice(text, at_index: 0, length: preview_max_length)
   let truncated_length = string.length(truncated)
 
@@ -685,9 +670,9 @@ fn parse_padding(styles: List(#(String, String))) -> #(Int, Int, Int, Int) {
 ///
 pub fn button(
   styles: List(#(String, String)),
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+  attrs: List(Attribute),
+  children: List(Element),
+) -> Element {
   let #(pt, pr, pb, pl) = parse_padding(styles)
   let y = pt + pb
   let text_raise = px_to_pt(y)
@@ -730,7 +715,7 @@ pub fn button(
       // >= 500% so we need to add extra spaces accordingly.
       //
       // See https://github.com/resend/react-email/issues/1512 for why we do not use letter-spacing instead.
-      element.unsafe_raw_html("", "span", [], pl_mso_html),
+      element.unsafe_raw_html("span", [], pl_mso_html),
       html.span(
         [
           attribute.styles([
@@ -743,17 +728,14 @@ pub fn button(
         ],
         children,
       ),
-      element.unsafe_raw_html("", "span", [], pr_mso_html),
+      element.unsafe_raw_html("span", [], pr_mso_html),
     ],
   )
 }
 
 /// Render an `<h1>` heading with email-safe default styles.
 ///
-pub fn h1(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn h1(attrs: List(Attribute), children: List(Element)) -> Element {
   html.h1(
     [
       attribute.style("font-size", "36px"),
@@ -768,10 +750,7 @@ pub fn h1(
 
 /// Render an `<h2>` heading with email-safe default styles.
 ///
-pub fn h2(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn h2(attrs: List(Attribute), children: List(Element)) -> Element {
   html.h2(
     [
       attribute.style("font-size", "30px"),
@@ -786,10 +765,7 @@ pub fn h2(
 
 /// Render an `<h3>` heading with email-safe default styles.
 ///
-pub fn h3(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn h3(attrs: List(Attribute), children: List(Element)) -> Element {
   html.h3(
     [
       attribute.style("font-size", "24px"),
@@ -816,10 +792,7 @@ pub fn h3(
 /// ])
 /// ```
 ///
-pub fn row(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn row(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
@@ -852,10 +825,7 @@ pub fn row(
 /// ])
 /// ```
 ///
-pub fn column(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn column(attrs: List(Attribute), children: List(Element)) -> Element {
   html.td([attribute.style("vertical-align", "top"), ..attrs], children)
 }
 
@@ -877,10 +847,7 @@ pub fn column(
 /// ])
 /// ```
 ///
-pub fn center(
-  attrs: List(Attribute(msg)),
-  children: List(Element(msg)),
-) -> Element(msg) {
+pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),

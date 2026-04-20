@@ -3,9 +3,9 @@ import gleam/erlang/application
 import gleam/option.{Some}
 import lumenmail/message
 import lumenmail/smtp
-import lustre/attribute
-import lustre/element.{type Element}
-import lustre/element/html
+import lustremail/attribute
+import lustremail/element.{type Element}
+import lustremail/element/html
 import lustremail/email
 import simplifile
 
@@ -202,7 +202,7 @@ fn email(name: String) {
   )
 }
 
-fn layout(preview: Element(msg), children: List(Element(msg))) {
+fn layout(preview: Element, children: List(Element)) {
   email.html(
     [
       attribute.lang("en"),
