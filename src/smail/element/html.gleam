@@ -62,26 +62,6 @@ pub fn address(attrs: List(Attribute), children: List(Element)) -> Element {
 }
 
 ///
-pub fn article(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("article", attrs, children)
-}
-
-///
-pub fn aside(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("aside", attrs, children)
-}
-
-///
-pub fn footer(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("footer", attrs, children)
-}
-
-///
-pub fn header(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("header", attrs, children)
-}
-
-///
 pub fn h1(attrs: List(Attribute), children: List(Element)) -> Element {
   element("h1", attrs, children)
 }
@@ -109,31 +89,6 @@ pub fn h5(attrs: List(Attribute), children: List(Element)) -> Element {
 ///
 pub fn h6(attrs: List(Attribute), children: List(Element)) -> Element {
   element("h6", attrs, children)
-}
-
-///
-pub fn hgroup(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("hgroup", attrs, children)
-}
-
-///
-pub fn main(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("main", attrs, children)
-}
-
-///
-pub fn nav(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("nav", attrs, children)
-}
-
-///
-pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("section", attrs, children)
-}
-
-///
-pub fn search(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("search", attrs, children)
 }
 
 // HTML ELEMENTS: TEXT CONTENT -------------------------------------------------
@@ -181,11 +136,6 @@ pub fn hr(attrs: List(Attribute)) -> Element {
 ///
 pub fn li(attrs: List(Attribute), children: List(Element)) -> Element {
   element("li", attrs, children)
-}
-
-///
-pub fn menu(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("menu", attrs, children)
 }
 
 ///
@@ -363,11 +313,6 @@ pub fn area(attrs: List(Attribute)) -> Element {
 }
 
 ///
-pub fn audio(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("audio", attrs, children)
-}
-
-///
 pub fn img(attrs: List(Attribute)) -> Element {
   element("img", attrs, constants.empty_list)
 }
@@ -376,65 +321,6 @@ pub fn img(attrs: List(Attribute)) -> Element {
 ///
 pub fn map(attrs: List(Attribute), children: List(Element)) -> Element {
   element("map", attrs, children)
-}
-
-///
-pub fn track(attrs: List(Attribute)) -> Element {
-  element("track", attrs, constants.empty_list)
-}
-
-///
-pub fn video(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("video", attrs, children)
-}
-
-// HTML ELEMENTS: EMBEDDED CONTENT ---------------------------------------------
-
-///
-pub fn embed(attrs: List(Attribute)) -> Element {
-  element("embed", attrs, constants.empty_list)
-}
-
-///
-pub fn iframe(attrs: List(Attribute)) -> Element {
-  element("iframe", attrs, constants.empty_list)
-}
-
-///
-pub fn object(attrs: List(Attribute)) -> Element {
-  element("object", attrs, constants.empty_list)
-}
-
-///
-pub fn picture(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("picture", attrs, children)
-}
-
-///
-pub fn portal(attrs: List(Attribute)) -> Element {
-  element("portal", attrs, constants.empty_list)
-}
-
-///
-pub fn source(attrs: List(Attribute)) -> Element {
-  element("source", attrs, constants.empty_list)
-}
-
-// HTML ELEMENTS: SCRIPTING ----------------------------------------------------
-
-///
-pub fn canvas(attrs: List(Attribute)) -> Element {
-  element("canvas", attrs, constants.empty_list)
-}
-
-///
-pub fn noscript(attrs: List(Attribute), children: List(Element)) -> Element {
-  element("noscript", attrs, children)
-}
-
-///
-pub fn script(attrs: List(Attribute), js: String) -> Element {
-  element.unsafe_raw_html("script", attrs, js)
 }
 
 // HTML ELEMENTS: DEMARCATING EDITS ---------------------------------------------
@@ -499,105 +385,4 @@ pub fn thead(attrs: List(Attribute), children: List(Element)) -> Element {
 ///
 pub fn tr(attrs: List(Attribute), children: List(Element)) -> Element {
   element.element("tr", attrs, children)
-}
-
-// HTML ELEMENTS: FORMS --------------------------------------------------------
-
-///
-pub fn button(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("button", attrs, children)
-}
-
-///
-pub fn datalist(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("datalist", attrs, children)
-}
-
-///
-pub fn fieldset(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("fieldset", attrs, children)
-}
-
-///
-pub fn form(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("form", attrs, children)
-}
-
-///
-pub fn input(attrs: List(Attribute)) -> Element {
-  element.element("input", attrs, constants.empty_list)
-}
-
-///
-pub fn label(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("label", attrs, children)
-}
-
-///
-pub fn legend(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("legend", attrs, children)
-}
-
-///
-pub fn meter(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("meter", attrs, children)
-}
-
-///
-pub fn optgroup(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("optgroup", attrs, children)
-}
-
-///
-pub fn option(attrs: List(Attribute), label: String) -> Element {
-  element.element("option", attrs, [element.text(label)])
-}
-
-///
-pub fn output(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("output", attrs, children)
-}
-
-///
-pub fn progress(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("progress", attrs, children)
-}
-
-///
-pub fn select(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("select", attrs, children)
-}
-
-///
-pub fn textarea(attrs: List(Attribute), content: String) -> Element {
-  element.element("textarea", attrs, [element.text(content)])
-}
-
-// HTML ELEMENTS: INTERACTIVE ELEMENTS -----------------------------------------
-
-///
-pub fn details(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("details", attrs, children)
-}
-
-///
-pub fn dialog(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("dialog", attrs, children)
-}
-
-///
-pub fn summary(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("summary", attrs, children)
-}
-
-// HTML ELEMENTS: WEB COMPONENTS -----------------------------------------------
-
-///
-pub fn slot(attrs: List(Attribute), fallback: List(Element)) -> Element {
-  element.element("slot", attrs, fallback)
-}
-
-///
-pub fn template(attrs: List(Attribute), children: List(Element)) -> Element {
-  element.element("template", attrs, children)
 }
