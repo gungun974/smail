@@ -156,6 +156,14 @@ pub fn href(url: String) -> Attribute {
   attribute("href", url)
 }
 
+/// Specifies the relationship between the current document and the linked
+/// resource. Common values for emails include `"noopener noreferrer"` for
+/// external links.
+///
+pub fn rel(value: String) -> Attribute {
+  attribute("rel", value)
+}
+
 /// Specifies where to display the linked resource or where to open the link.
 /// The following values are accepted:
 ///
@@ -190,16 +198,30 @@ pub fn src(url: String) -> Attribute {
   attribute("src", url)
 }
 
-/// Specifies the width of the element in pixels.
+/// Specifies the width of the element.
 ///
-pub fn width(value: Int) -> Attribute {
-  attribute("width", int.to_string(value))
+pub fn width(value: String) -> Attribute {
+  attribute("width", value)
 }
 
 /// Specifies the height of the element in pixels.
 ///
 pub fn height(value: Int) -> Attribute {
   attribute("height", int.to_string(value))
+}
+
+/// Specifies horizontal whitespace in pixels on the left and right sides of
+/// an image. Legacy attribute still useful for email client compatibility.
+///
+pub fn hspace(value: Int) -> Attribute {
+  attribute("hspace", int.to_string(value))
+}
+
+/// Specifies vertical whitespace in pixels on the top and bottom sides of
+/// an image. Legacy attribute still useful for email client compatibility.
+///
+pub fn vspace(value: Int) -> Attribute {
+  attribute("vspace", int.to_string(value))
 }
 
 // ELEMENT ATTRIBUTES ----------------------------------------------------------
@@ -246,6 +268,66 @@ pub fn charset(value: String) -> Attribute {
 }
 
 // TABLE ATTRIBUTES ------------------------------------------------------------
+
+/// Specifies the alignment of an element's content. Commonly used on tables,
+/// table cells, and images in email clients that have limited CSS support.
+///
+/// | Value    | Description                 |
+/// |----------|-----------------------------|
+/// | "left"   | Aligns content to the left  |
+/// | "center" | Centers content             |
+/// | "right"  | Aligns content to the right |
+///
+pub fn align(value: String) -> Attribute {
+  attribute("align", value)
+}
+
+/// Specifies the vertical alignment of content within a table cell.
+///
+/// | Value    | Description                      |
+/// |----------|----------------------------------|
+/// | "top"    | Aligns content to the top        |
+/// | "middle" | Centers content vertically       |
+/// | "bottom" | Aligns content to the bottom     |
+///
+pub fn valign(value: String) -> Attribute {
+  attribute("valign", value)
+}
+
+/// Specifies a background color using an HTML attribute. Important for email
+/// clients like Outlook that may ignore CSS `background-color`.
+///
+pub fn bgcolor(value: String) -> Attribute {
+  attribute("bgcolor", value)
+}
+
+/// Specifies a background image URL using an HTML attribute. Used on tables
+/// and table cells for email clients that support it.
+///
+pub fn background(url: String) -> Attribute {
+  attribute("background", url)
+}
+
+/// Specifies the border width of a table or image. Setting `border(0)` on
+/// images is a common email best practice to remove default link borders.
+///
+pub fn border(value: Int) -> Attribute {
+  attribute("border", int.to_string(value))
+}
+
+/// Specifies the space between the cell walls and the cell content in a table.
+/// Works in email clients where CSS padding on cells may not be fully supported.
+///
+pub fn cellpadding(value: Int) -> Attribute {
+  attribute("cellpadding", int.to_string(value))
+}
+
+/// Specifies the space between cells in a table. Works in email clients where
+/// CSS margin on cells may not be supported.
+///
+pub fn cellspacing(value: Int) -> Attribute {
+  attribute("cellspacing", int.to_string(value))
+}
 
 /// A short, abbreviated description of the header cell's content provided as an
 /// alternative label to use for the header cell when referencing the cell in other

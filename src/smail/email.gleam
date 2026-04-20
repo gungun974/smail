@@ -352,12 +352,12 @@ pub fn body(attrs: List(Attribute), children: List(Element)) -> Element {
     [
       html.table(
         [
-          attribute.attribute("align", "center"),
+          attribute.align("center"),
           attribute.role("presentation"),
-          attribute.attribute("cellspacing", "0"),
-          attribute.attribute("cellpadding", "0"),
-          attribute.attribute("width", "100%"),
-          attribute.attribute("border", "0"),
+          attribute.cellspacing(0),
+          attribute.cellpadding(0),
+          attribute.width("100%"),
+          attribute.border(0),
         ],
         [
           html.tbody([], [
@@ -394,11 +394,11 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
-      attribute.attribute("cellspacing", "0"),
-      attribute.attribute("cellpadding", "0"),
-      attribute.attribute("border", "0"),
-      attribute.attribute("width", "100%"),
-      attribute.attribute("align", "center"),
+      attribute.cellspacing(0),
+      attribute.cellpadding(0),
+      attribute.border(0),
+      attribute.width("100%"),
+      attribute.align("center"),
       attribute.style("max-width", "37.5em"),
       ..attrs
     ],
@@ -434,11 +434,11 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
-      attribute.attribute("cellspacing", "0"),
-      attribute.attribute("cellpadding", "0"),
-      attribute.attribute("border", "0"),
-      attribute.attribute("width", "100%"),
-      attribute.attribute("align", "center"),
+      attribute.cellspacing(0),
+      attribute.cellpadding(0),
+      attribute.border(0),
+      attribute.width("100%"),
+      attribute.align("center"),
       ..attrs
     ],
     [
@@ -823,10 +823,10 @@ pub fn row(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
-      attribute.attribute("cellspacing", "0"),
-      attribute.attribute("cellpadding", "0"),
-      attribute.attribute("border", "0"),
-      attribute.attribute("width", "100%"),
+      attribute.cellspacing(0),
+      attribute.cellpadding(0),
+      attribute.border(0),
+      attribute.width("100%"),
       ..attrs
     ],
     [html.tbody([], [html.tr([], children)])],
@@ -843,10 +843,10 @@ pub fn row(attrs: List(Attribute), children: List(Element)) -> Element {
 /// import lustre/element/html
 ///
 /// email.row([], [
-///   email.column([attribute.attribute("width", "50%")], [
+///   email.column([attribute.width("50%")], [
 ///     html.text("Left"),
 ///   ]),
-///   email.column([attribute.attribute("width", "50%")], [
+///   email.column([attribute.width("50%")], [
 ///     html.text("Right"),
 ///   ]),
 /// ])
@@ -878,10 +878,10 @@ pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
   html.table(
     [
       attribute.role("presentation"),
-      attribute.attribute("cellspacing", "0"),
-      attribute.attribute("cellpadding", "0"),
-      attribute.attribute("border", "0"),
-      attribute.attribute("align", "center"),
+      attribute.cellspacing(0),
+      attribute.cellpadding(0),
+      attribute.border(0),
+      attribute.align("center"),
       ..attrs
     ],
     [html.tbody([], [html.tr([], [html.td([], children)])])],
