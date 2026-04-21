@@ -3,11 +3,12 @@ import gleam/erlang/application
 import gleam/option.{Some}
 import lumenmail/message
 import lumenmail/smtp
+import simplifile
 import smail/attribute
 import smail/element.{type Element}
 import smail/element/html
 import smail/email
-import simplifile
+import smail/style
 
 pub fn main() {
   let assert Ok(priv_directory) = application.priv_directory("exemple")
@@ -42,13 +43,13 @@ pub fn main() {
 
 fn email(name: String) {
   let text_lg = [
-    attribute.style("font-size", "1.125rem"),
-    attribute.style("line-height", "1.75rem"),
+    style.font_size("1.125rem"),
+    style.line_height("1.75rem"),
   ]
 
   let text_base = [
-    attribute.style("font-size", "1rem"),
-    attribute.style("line-height", "1.5rem"),
+    style.font_size("1rem"),
+    style.line_height("1.5rem"),
   ]
 
   layout(
@@ -58,45 +59,41 @@ fn email(name: String) {
     [
       email.text(
         [
-          attribute.style("margin", "0"),
-          attribute.style("margin-top", "0.5rem"),
-          attribute.style("margin-bottom", "0.5rem"),
+          style.margin("0"),
+          style.margin_top("0.5rem"),
+          style.margin_bottom("0.5rem"),
           ..text_lg
         ],
         [
           html.text("Hoi, "),
           html.span(
             [
-              attribute.style("font-weight", "600"),
-              attribute.style("white-space", "nowrap"),
+              style.font_weight("600"),
+              style.white_space("nowrap"),
             ],
             [html.text(name)],
           ),
         ],
       ),
       email.text(
-        [
-          attribute.style("margin", "0"),
-          attribute.style("margin-bottom", "0.5rem"),
-          ..text_base
-        ],
+        [style.margin("0"), style.margin_bottom("0.5rem"), ..text_base],
         [
           html.text("Have you heard about the Gleam programming language ?"),
         ],
       ),
       email.text(
         [
-          attribute.style("margin", "0"),
-          attribute.style("margin-bottom", "0.5rem"),
-          attribute.style("font-style", "italic"),
+          style.margin("0"),
+          style.margin_bottom("0.5rem"),
+          style.font_style("italic"),
           ..text_base
         ],
         [
           html.span(
             [
-              attribute.style("font-weight", "600"),
-              attribute.style("white-space", "nowrap"),
-              attribute.style("color", "#ffaff3"),
+              style.font_weight("600"),
+              style.white_space("nowrap"),
+              style.color("#ffaff3"),
             ],
             [html.text("Gleam")],
           ),
@@ -107,59 +104,49 @@ fn email(name: String) {
       ),
       email.section(
         [
-          attribute.style("margin-top", "1rem"),
-          attribute.style("margin-bottom", "1rem"),
+          style.margin_top("1rem"),
+          style.margin_bottom("1rem"),
         ],
         [email.hr([])],
       ),
-      email.row([attribute.style("margin-bottom", "1rem")], [
-        email.column([attribute.style("padding-right", "0.5rem")], [
+      email.row([style.margin_bottom("1rem")], [
+        email.column([style.padding_right("0.5rem")], [
           email.text(
             [
-              attribute.style("margin", "0"),
-              attribute.style("font-weight", "600"),
-              attribute.style("color", "#fefefc"),
+              style.margin("0"),
+              style.font_weight("600"),
+              style.color("#fefefc"),
               ..text_base
             ],
             [html.text("Here to help")],
           ),
-          email.text(
-            [
-              attribute.style("margin", "0"),
-              attribute.style("color", "#d4d4d4"),
-              ..text_base
-            ],
-            [html.text("Fun and stress-free")],
-          ),
+          email.text([style.margin("0"), style.color("#d4d4d4"), ..text_base], [
+            html.text("Fun and stress-free"),
+          ]),
         ]),
-        email.column([attribute.style("padding-left", "0.5rem")], [
+        email.column([style.padding_left("0.5rem")], [
           email.text(
             [
-              attribute.style("margin", "0"),
-              attribute.style("font-weight", "600"),
-              attribute.style("color", "#fefefc"),
+              style.margin("0"),
+              style.font_weight("600"),
+              style.color("#fefefc"),
               ..text_base
             ],
             [html.text("Multilingual")],
           ),
-          email.text(
-            [
-              attribute.style("margin", "0"),
-              attribute.style("color", "#d4d4d4"),
-              ..text_base
-            ],
-            [html.text("🩷 BEAM & JS")],
-          ),
+          email.text([style.margin("0"), style.color("#d4d4d4"), ..text_base], [
+            html.text("🩷 BEAM & JS"),
+          ]),
         ]),
       ]),
       email.row([], [
         email.column([], [
           email.text(
             [
-              attribute.style("margin", "0"),
-              attribute.style("margin-bottom", "1rem"),
-              attribute.style("font-style", "italic"),
-              attribute.style("color", "#fefefc"),
+              style.margin("0"),
+              style.margin_bottom("1rem"),
+              style.font_style("italic"),
+              style.color("#fefefc"),
               ..text_base
             ],
             [
@@ -167,15 +154,15 @@ fn email(name: String) {
               html.br([]),
               html.span(
                 [
-                  attribute.style("font-weight", "600"),
-                  attribute.style("white-space", "nowrap"),
+                  style.font_weight("600"),
+                  style.white_space("nowrap"),
                 ],
                 [
                   email.link(
                     [
                       attribute.href("https://tour.gleam.run"),
                       attribute.rel("noopener noreferrer"),
-                      attribute.style("color", "#ffaff3"),
+                      style.color("#ffaff3"),
                     ],
                     [html.text("tour.gleam.run")],
                   ),
@@ -185,21 +172,22 @@ fn email(name: String) {
           ),
         ]),
         email.column(
-          [attribute.style("vertical-align", "middle"), attribute.valign("middle")],
+          [style.vertical_align("middle"), attribute.valign("middle")],
           [
-          email.center([], [
-            email.button(
-              [
-                attribute.style("border-radius", "100px"),
-                attribute.style("background-color", "#ffaff3"),
-                attribute.style("color", "#1e1e1e"),
-                attribute.style("padding", "12px 32px 11px"),
-                attribute.href("https://tour.gleam.run"),
-              ],
-              [html.text("Try Gleam")],
-            ),
-          ]),
-        ]),
+            email.center([], [
+              email.button(
+                [
+                  style.border_radius("100px"),
+                  style.background_color("#ffaff3"),
+                  style.color("#1e1e1e"),
+                  style.padding("12px 32px 11px"),
+                  attribute.href("https://tour.gleam.run"),
+                ],
+                [html.text("Try Gleam")],
+              ),
+            ]),
+          ],
+        ),
       ]),
     ],
   )
@@ -273,22 +261,22 @@ fn layout(preview: Element, children: List(Element)) {
       ]),
       email.body(
         [
-          attribute.style("background-color", "#fffbe8"),
+          style.background_color("#fffbe8"),
         ],
         [
           preview,
           email.container(
             [
-              attribute.style("margin-bottom", "2rem"),
-              attribute.style("margin-left", "auto"),
-              attribute.style("margin-right", "auto"),
+              style.margin_bottom("2rem"),
+              style.margin_left("auto"),
+              style.margin_right("auto"),
               attribute.class("sm_px-6"),
             ],
             [
               email.center(
                 [
-                  attribute.style("margin-top", "2rem"),
-                  attribute.style("margin-bottom", "1rem"),
+                  style.margin_top("2rem"),
+                  style.margin_bottom("1rem"),
                 ],
                 [
                   email.img([
@@ -302,18 +290,18 @@ fn layout(preview: Element, children: List(Element)) {
               ),
               email.section(
                 [
-                  attribute.style("padding", "0.75rem 1.5rem"),
-                  attribute.style("line-height", "1.5rem"),
-                  attribute.style("width", "100%"),
-                  attribute.style("background-color", "#292d3e"),
+                  style.padding("0.75rem 1.5rem"),
+                  style.line_height("1.5rem"),
+                  style.width("100%"),
+                  style.background_color("#292d3e"),
                   attribute.bgcolor("#292d3e"),
                   attribute.style(
                     "box-shadow",
                     "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
                   ),
-                  attribute.style("border-radius", "0.5rem"),
-                  attribute.style("color", "#fefefc"),
-                  attribute.style("text-align", "left"),
+                  style.border_radius("0.5rem"),
+                  style.color("#fefefc"),
+                  style.text_align("left"),
 
                   attribute.class("sm_px-12"),
                 ],

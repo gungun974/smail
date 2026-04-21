@@ -17,6 +17,7 @@ import gleam/string
 import smail/attribute.{type Attribute}
 import smail/element.{type Element}
 import smail/element/html
+import smail/style
 import smail/vdom/vattr
 import smail/vdom/vnode
 
@@ -399,12 +400,12 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.border(0),
       attribute.width("100%"),
       attribute.align("center"),
-      attribute.style("max-width", "37.5em"),
+      style.max_width("37.5em"),
       ..attrs
     ],
     [
       html.tbody([], [
-        html.tr([attribute.style("width", "100%")], [
+        html.tr([style.width("100%")], [
           html.td([], children),
         ]),
       ]),
@@ -468,10 +469,10 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
 ///
 pub fn img(attrs: List(Attribute)) {
   html.img([
-    attribute.style("display", "block"),
+    style.display("block"),
     attribute.style("outline", "none"),
-    attribute.style("border", "none"),
-    attribute.style("text-decoration", "none"),
+    style.border("none"),
+    style.text_decoration("none"),
     ..attrs
   ])
 }
@@ -492,10 +493,10 @@ pub fn img(attrs: List(Attribute)) {
 pub fn text(attrs: List(Attribute), children: List(Element)) -> Element {
   html.p(
     [
-      attribute.style("font-size", "14px"),
-      attribute.style("line-height", "24px"),
-      attribute.style("border", "none"),
-      attribute.style("text-decoration", "none"),
+      style.font_size("14px"),
+      style.line_height("24px"),
+      style.border("none"),
+      style.text_decoration("none"),
       ..attrs
     ],
     children,
@@ -519,9 +520,9 @@ pub fn text(attrs: List(Attribute), children: List(Element)) -> Element {
 ///
 pub fn hr(attrs: List(Attribute)) -> Element {
   html.hr([
-    attribute.style("width", "100%"),
-    attribute.style("border", "none"),
-    attribute.style("border-top", "1px solid #eaeaea"),
+    style.width("100%"),
+    style.border("none"),
+    style.border_top("1px solid #eaeaea"),
     ..attrs
   ])
 }
@@ -545,7 +546,7 @@ pub fn link(attrs: List(Attribute), children: List(Element)) -> Element {
   html.a(
     [
       attribute.target("_blank"),
-      attribute.style("color", "#067df7"),
+      style.color("#067df7"),
       attribute.style("text-decoration-line", "none"),
       ..attrs
     ],
@@ -590,12 +591,12 @@ pub fn preview(text: String) -> Element {
 
   html.div(
     [
-      attribute.style("display", "none"),
-      attribute.style("overflow", "hidden"),
-      attribute.style("line-height", "1px"),
+      style.display("none"),
+      style.overflow("hidden"),
+      style.line_height("1px"),
       attribute.style("opacity", "0"),
       attribute.style("max-height", "0"),
-      attribute.style("max-width", "0"),
+      style.max_width("0"),
     ],
     [html.text(truncated), whitespace_node],
   )
@@ -765,10 +766,10 @@ pub fn button(attrs: List(Attribute), children: List(Element)) -> Element {
 pub fn h1(attrs: List(Attribute), children: List(Element)) -> Element {
   html.h1(
     [
-      attribute.style("font-size", "36px"),
-      attribute.style("font-weight", "bold"),
-      attribute.style("line-height", "40px"),
-      attribute.style("margin", "16px 0"),
+      style.font_size("36px"),
+      style.font_weight("bold"),
+      style.line_height("40px"),
+      style.margin("16px 0"),
       ..attrs
     ],
     children,
@@ -780,10 +781,10 @@ pub fn h1(attrs: List(Attribute), children: List(Element)) -> Element {
 pub fn h2(attrs: List(Attribute), children: List(Element)) -> Element {
   html.h2(
     [
-      attribute.style("font-size", "30px"),
-      attribute.style("font-weight", "bold"),
-      attribute.style("line-height", "36px"),
-      attribute.style("margin", "16px 0"),
+      style.font_size("30px"),
+      style.font_weight("bold"),
+      style.line_height("36px"),
+      style.margin("16px 0"),
       ..attrs
     ],
     children,
@@ -795,10 +796,10 @@ pub fn h2(attrs: List(Attribute), children: List(Element)) -> Element {
 pub fn h3(attrs: List(Attribute), children: List(Element)) -> Element {
   html.h3(
     [
-      attribute.style("font-size", "24px"),
-      attribute.style("font-weight", "bold"),
-      attribute.style("line-height", "32px"),
-      attribute.style("margin", "16px 0"),
+      style.font_size("24px"),
+      style.font_weight("bold"),
+      style.line_height("32px"),
+      style.margin("16px 0"),
       ..attrs
     ],
     children,
@@ -853,7 +854,7 @@ pub fn row(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ```
 ///
 pub fn column(attrs: List(Attribute), children: List(Element)) -> Element {
-  html.td([attribute.style("vertical-align", "top"), ..attrs], children)
+  html.td([style.vertical_align("top"), ..attrs], children)
 }
 
 /// Render a horizontally centered wrapper.

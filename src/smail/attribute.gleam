@@ -9,13 +9,6 @@ pub fn attribute(name: String, value: String) -> Attribute {
   vattr.attribute(name, value)
 }
 
-fn boolean_attribute(name: String, value: Bool) -> Attribute {
-  case value {
-    True -> attribute(name, "")
-    False -> none()
-  }
-}
-
 /// Create an empty attribute. This is not added to the DOM and not rendered when
 /// calling [`element.to_string`](./element.html#to_string), but it is useful for
 /// _conditionally_ adding attributes to an element.
