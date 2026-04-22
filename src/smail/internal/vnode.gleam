@@ -1,12 +1,10 @@
-// IMPORTS ---------------------------------------------------------------------
-
 import gleam/int
 import gleam/list
 import gleam/option.{type Option, None, Some}
 import gleam/string
 import gleam/string_tree.{type StringTree}
 import houdini
-import smail/vdom/vattr.{type Attribute}
+import smail/internal/vattr.{type Attribute}
 
 // TYPES -----------------------------------------------------------------------
 

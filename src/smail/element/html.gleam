@@ -2,7 +2,6 @@
 
 import smail/attribute.{type Attribute}
 import smail/element.{type Element, element}
-import smail/internals/constants
 
 // HTML ELEMENTS: MAIN ROOT ----------------------------------------------------
 
@@ -19,7 +18,7 @@ pub fn text(content: String) -> Element {
 
 ///
 pub fn base(attrs: List(Attribute)) -> Element {
-  element("base", attrs, constants.empty_list)
+  element("base", attrs, [])
 }
 
 ///
@@ -29,12 +28,12 @@ pub fn head(attrs: List(Attribute), children: List(Element)) -> Element {
 
 ///
 pub fn link(attrs: List(Attribute)) -> Element {
-  element("link", attrs, constants.empty_list)
+  element("link", attrs, [])
 }
 
 ///
 pub fn meta(attrs: List(Attribute)) -> Element {
-  element("meta", attrs, constants.empty_list)
+  element("meta", attrs, [])
 }
 
 ///
@@ -130,7 +129,7 @@ pub fn figure(attrs: List(Attribute), children: List(Element)) -> Element {
 
 ///
 pub fn hr(attrs: List(Attribute)) -> Element {
-  element("hr", attrs, constants.empty_list)
+  element("hr", attrs, [])
 }
 
 ///
@@ -187,7 +186,7 @@ pub fn bdo(attrs: List(Attribute), children: List(Element)) -> Element {
 
 ///
 pub fn br(attrs: List(Attribute)) -> Element {
-  element("br", attrs, constants.empty_list)
+  element("br", attrs, [])
 }
 
 ///
@@ -302,19 +301,19 @@ pub fn var(attrs: List(Attribute), children: List(Element)) -> Element {
 
 ///
 pub fn wbr(attrs: List(Attribute)) -> Element {
-  element("wbr", attrs, constants.empty_list)
+  element("wbr", attrs, [])
 }
 
 // HTML ELEMENTS: IMAGE AND MULTIMEDIA -----------------------------------------
 
 ///
 pub fn area(attrs: List(Attribute)) -> Element {
-  element("area", attrs, constants.empty_list)
+  element("area", attrs, [])
 }
 
 ///
 pub fn img(attrs: List(Attribute)) -> Element {
-  element("img", attrs, constants.empty_list)
+  element("img", attrs, [])
 }
 
 /// Used with <area> elements to define an image map (a clickable link area).
@@ -344,7 +343,7 @@ pub fn caption(attrs: List(Attribute), children: List(Element)) -> Element {
 
 ///
 pub fn col(attrs: List(Attribute)) -> Element {
-  element.element("col", attrs, constants.empty_list)
+  element.element("col", attrs, [])
 }
 
 ///

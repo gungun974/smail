@@ -7,8 +7,8 @@ import lumenmail/smtp
 import simplifile
 import smail/attribute
 import smail/element.{type Element}
+import smail/element/email
 import smail/element/html
-import smail/email
 import smail/style
 
 pub fn main() {
@@ -16,7 +16,7 @@ pub fn main() {
 
   io.println(
     mail
-    |> email.to_plain_text(),
+    |> element.to_plain_text(),
   )
 
   let assert Ok(priv_directory) = application.priv_directory("exemple")
@@ -33,7 +33,7 @@ pub fn main() {
     |> message.from_name_email("Lucy", "lucy@example.com")
     |> message.to_email("sara@example.com")
     |> message.subject("Hey, psst!")
-    |> message.html_body(mail |> email.to_html())
+    |> message.html_body(mail |> element.to_html())
     |> message.inline_attachment(
       "lucymail.png",
       message.ApplicationOctetStream,

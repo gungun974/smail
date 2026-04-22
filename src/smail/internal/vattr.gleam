@@ -1,11 +1,8 @@
-// IMPORTS ---------------------------------------------------------------------
-
 import gleam/list
 import gleam/order.{type Order}
 import gleam/string
 import gleam/string_tree.{type StringTree}
 import houdini
-import smail/internals/constants
 
 // TYPES -----------------------------------------------------------------------
 
@@ -56,7 +53,7 @@ pub fn prepare(attributes: List(Attribute)) -> List(Attribute) {
       |> expand_style_attributes
       // Sort in reverse because `merge` will build the list in reverse anyway.
       |> list.sort(by: fn(a, b) { compare(b, a) })
-      |> merge(constants.empty_list)
+      |> merge([])
   }
 }
 
@@ -104,7 +101,7 @@ pub fn merge(
   }
 }
 
-@external(javascript, "./vattr.ffi.mjs", "compare")
+@external(javascript, "./vattr_ffi.mjs", "compare")
 pub fn compare(a: Attribute, b: Attribute) -> Order {
   string.compare(a.name, b.name)
 }
