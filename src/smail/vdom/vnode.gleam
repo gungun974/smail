@@ -448,13 +448,15 @@ fn get_element_white_space(node: Element) -> option.Option(CascadingWhiteSpace) 
   }
 }
 
-const plain_text_wrap_column = 72
-
 const plain_text_nbsp = "\u{00A0}"
 
-pub fn to_plain_string(node: Element) -> String {
+pub fn to_plain_string(
+  node: Element,
+  wrap_column: Int,
+  enable_wrapping: Bool,
+) -> String {
   node
-  |> to_plain_string_tree(WhiteSpaceNormal)
+  |> to_plain_string_tree(WhiteSpaceNormal, wrap_column, enable_wrapping)
   |> string_tree.to_string
   |> string.replace(plain_text_nbsp, " ")
 }
@@ -495,6 +497,8 @@ fn wrap_line(line: StringTree, max_width: Int) -> StringTree {
 fn to_plain_string_tree(
   node: Element,
   white_space: CascadingWhiteSpace,
+  wrap_column: Int,
+  enable_wrapping: Bool,
 ) -> StringTree {
   case node {
     Text(content: "") -> string_tree.new()
@@ -511,7 +515,7 @@ fn to_plain_string_tree(
         "hr" ->
           int.range(
             from: 0,
-            to: plain_text_wrap_column,
+            to: wrap_column,
             with: string_tree.new(),
             run: fn(acc, _) { string_tree.append(acc, "-") },
           )
@@ -528,21 +532,37 @@ fn to_plain_string_tree(
         DisplayNewLine -> {
           let content =
             string_tree.new()
-            |> children_to_plain_string_tree(effective_white_space, children)
+            |> children_to_plain_string_tree(
+              effective_white_space,
+              wrap_column,
+              enable_wrapping,
+              children,
+            )
           case effective_white_space {
-            WhiteSpaceNormal | WhiteSpacePreLine ->
-              wrap_text(content, plain_text_wrap_column)
-            WhiteSpaceNowrap | WhiteSpacePre | WhiteSpacePreWrap -> content
+            WhiteSpaceNormal | WhiteSpacePreLine if enable_wrapping ->
+              wrap_text(content, wrap_column)
+            _ -> content
           }
           |> string_tree.append("\n\n")
         }
 
         DisplayTable(Table) ->
-          render_to_plain_string_tree(white_space, children, node)
+          render_to_plain_string_tree(
+            white_space,
+            wrap_column,
+            enable_wrapping,
+            children,
+            node,
+          )
 
         DisplayInline | DisplayTable(_) -> {
           string_tree.new()
-          |> children_to_plain_string_tree(effective_white_space, children)
+          |> children_to_plain_string_tree(
+            effective_white_space,
+            wrap_column,
+            enable_wrapping,
+            children,
+          )
         }
         DisplayNone -> string_tree.new()
       }
@@ -557,12 +577,36 @@ fn to_plain_string_tree(
     UnsafeInnerHtml(..) -> string_tree.new()
     Fragment(children:) -> {
       string_tree.new()
-      |> children_to_plain_string_tree(white_space, children)
+      |> children_to_plain_string_tree(
+        white_space,
+        wrap_column,
+        enable_wrapping,
+        children,
+      )
     }
   }
 }
 
-fn table_prepare_row_and_cell(row: Element, white_space: CascadingWhiteSpace) {
+fn children_to_plain_string_tree(
+  html: StringTree,
+  white_space: CascadingWhiteSpace,
+  wrap_column: Int,
+  enable_wrapping: Bool,
+  children: List(Element),
+) -> StringTree {
+  use html, child <- list.fold(children, html)
+  string_tree.append_tree(
+    html,
+    to_plain_string_tree(child, white_space, wrap_column, enable_wrapping),
+  )
+}
+
+fn table_prepare_row_and_cell(
+  row: Element,
+  white_space: CascadingWhiteSpace,
+  wrap_column: Int,
+  enable_wrapping: Bool,
+) {
   case row, get_element_display(row) {
     Element(children:, ..), DisplayTable(TableRow) ->
       Ok(
@@ -571,7 +615,12 @@ fn table_prepare_row_and_cell(row: Element, white_space: CascadingWhiteSpace) {
           case get_element_display(cell) {
             DisplayTable(TableCell) ->
               Ok({
-                to_plain_string_tree(cell, white_space)
+                to_plain_string_tree(
+                  cell,
+                  white_space,
+                  wrap_column,
+                  enable_wrapping,
+                )
                 |> string_tree.to_string
                 |> string.trim
                 |> string.split("\n")
@@ -634,6 +683,8 @@ fn table_render_line(
 
 fn render_to_plain_string_tree(
   white_space: CascadingWhiteSpace,
+  wrap_column: Int,
+  enable_wrapping: Bool,
   children: List(Element),
   node: Element,
 ) -> StringTree {
@@ -641,7 +692,12 @@ fn render_to_plain_string_tree(
     list.flat_map(children, fn(child) {
       case child, get_element_display(child) {
         Element(tag: "thead", children:, ..), DisplayTable(TableRowGroup) ->
-          list.filter_map(children, table_prepare_row_and_cell(_, white_space))
+          list.filter_map(children, table_prepare_row_and_cell(
+            _,
+            white_space,
+            wrap_column,
+            enable_wrapping,
+          ))
         _, _ -> []
       }
     })
@@ -651,9 +707,21 @@ fn render_to_plain_string_tree(
       case child, get_element_display(child) {
         Element(tag: "thead", ..), DisplayTable(TableRowGroup) -> []
         Element(children:, ..), DisplayTable(TableRowGroup) ->
-          list.filter_map(children, table_prepare_row_and_cell(_, white_space))
+          list.filter_map(children, table_prepare_row_and_cell(
+            _,
+            white_space,
+            wrap_column,
+            enable_wrapping,
+          ))
         _, _ ->
-          case table_prepare_row_and_cell(child, white_space) {
+          case
+            table_prepare_row_and_cell(
+              child,
+              white_space,
+              wrap_column,
+              enable_wrapping,
+            )
+          {
             Ok(row) -> [row]
             Error(_) -> []
           }
@@ -685,8 +753,8 @@ fn render_to_plain_string_tree(
   let col_widths = case get_element_is_full_width(node), num_cols > 0 {
     True, True -> {
       let target = case has_border {
-        True -> { plain_text_wrap_column - 1 } / num_cols - 3
-        False -> { plain_text_wrap_column + 1 } / num_cols - 3
+        True -> { wrap_column - 1 } / num_cols - 3
+        False -> { wrap_column + 1 } / num_cols - 3
       }
       list.map(col_widths, fn(w) { int.max(w, target) })
     }
@@ -728,13 +796,4 @@ fn render_to_plain_string_tree(
     }
   }
   |> string_tree.append("\n\n")
-}
-
-fn children_to_plain_string_tree(
-  html: StringTree,
-  white_space: CascadingWhiteSpace,
-  children: List(Element),
-) -> StringTree {
-  use html, child <- list.fold(children, html)
-  string_tree.append_tree(html, to_plain_string_tree(child, white_space))
 }

@@ -42,7 +42,15 @@ pub fn to_html(el: Element) -> String {
 }
 
 pub fn to_plain_text(el: Element) -> String {
-  vnode.to_plain_string(wrap_document(el))
+  vnode.to_plain_string(el, 72, True)
+}
+
+pub type PlainTextConfig {
+  PlainTextConfig(wrap_column: Int, enable_wrapping: Bool)
+}
+
+pub fn advanced_to_plain_text(el: Element, config: PlainTextConfig) -> String {
+  vnode.to_plain_string(el, config.wrap_column, config.enable_wrapping)
 }
 
 /// Render the root `<html>` element.
