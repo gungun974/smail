@@ -42,6 +42,7 @@ fn convert_rem_token(token: String) -> String {
 
 // TYPOGRAPHY ------------------------------------------------------------------
 
+//TODO: Explain need to be placed on text
 pub fn color(value: String) -> Attribute {
   attribute.style("color", value)
 }
@@ -184,6 +185,7 @@ pub fn border_left(value: String) -> Attribute {
   attribute.style("border-left", rem_to_px(value))
 }
 
+//TODO: Explain don't work on Outlook
 pub fn border_radius(value: String) -> Attribute {
   attribute.style("border-radius", rem_to_px(value))
 }

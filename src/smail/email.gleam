@@ -414,6 +414,32 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
         "padding-right" -> True
         "padding-top" -> True
         "padding-bottom" -> True
+        "color" -> True
+        _ -> False
+      }
+    })
+
+  let #(table_attrs, td_attrs) =
+    list.partition(attrs, fn(attr) {
+      case attr.name {
+        "role" -> True
+        "cellspacing" -> True
+        "cellpadding" -> True
+        "border" -> True
+        "width" -> True
+        "align" -> True
+        _ -> False
+      }
+    })
+
+  let #(table_styles, td_styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "width" -> True
+        "border" -> True
+        "text-align" -> True
+        "max-width" -> True
+        "min-width" -> True
         _ -> False
       }
     })
@@ -428,18 +454,22 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.align("center"),
       style.max_width("37.5em"),
       attribute.styles(margin),
-      attribute.styles(styles),
-      ..attrs
+      attribute.styles(table_styles),
+      ..table_attrs
     ],
     [
       html.tbody([], [
         html.tr([style.width("100%")], [
           html.td(
+            [attribute.styles(margin), attribute.styles(td_styles), ..td_attrs],
             [
-              attribute.styles(margin),
-              attribute.styles(padding),
+              table_wrapper(
+                [
+                  attribute.styles(padding),
+                ],
+                children,
+              ),
             ],
-            children,
           ),
         ]),
       ]),
@@ -488,6 +518,32 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
         "padding-right" -> True
         "padding-top" -> True
         "padding-bottom" -> True
+        "color" -> True
+        _ -> False
+      }
+    })
+
+  let #(table_attrs, td_attrs) =
+    list.partition(attrs, fn(attr) {
+      case attr.name {
+        "role" -> True
+        "cellspacing" -> True
+        "cellpadding" -> True
+        "border" -> True
+        "width" -> True
+        "align" -> True
+        _ -> False
+      }
+    })
+
+  let #(table_styles, td_styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "width" -> True
+        "border" -> True
+        "text-align" -> True
+        "max-width" -> True
+        "min-width" -> True
         _ -> False
       }
     })
@@ -501,16 +557,42 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.width("100%"),
       attribute.align("center"),
       attribute.styles(margin),
-      attribute.styles(styles),
-      ..attrs
+      attribute.styles(table_styles),
+      ..table_attrs
     ],
     [
       html.tbody([], [
         html.tr([], [
           html.td(
-            [attribute.styles(margin), attribute.styles(padding)],
-            children,
+            [attribute.styles(margin), attribute.styles(td_styles), ..td_attrs],
+            [
+              table_wrapper(
+                [
+                  attribute.styles(padding),
+                ],
+                children,
+              ),
+            ],
           ),
+        ]),
+      ]),
+    ],
+  )
+}
+
+fn table_wrapper(attrs: List(Attribute), children: List(Element)) -> Element {
+  html.table(
+    [
+      attribute.role("presentation"),
+      attribute.cellspacing(0),
+      attribute.cellpadding(0),
+      attribute.border(0),
+      attribute.width("100%"),
+    ],
+    [
+      html.tbody([], [
+        html.tr([], [
+          html.td(attrs, children),
         ]),
       ]),
     ],
@@ -968,6 +1050,32 @@ pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
         "padding-right" -> True
         "padding-top" -> True
         "padding-bottom" -> True
+        "color" -> True
+        _ -> False
+      }
+    })
+
+  let #(table_attrs, td_attrs) =
+    list.partition(attrs, fn(attr) {
+      case attr.name {
+        "role" -> True
+        "cellspacing" -> True
+        "cellpadding" -> True
+        "border" -> True
+        "width" -> True
+        "align" -> True
+        _ -> False
+      }
+    })
+
+  let #(table_styles, td_styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "width" -> True
+        "border" -> True
+        "text-align" -> True
+        "max-width" -> True
+        "min-width" -> True
         _ -> False
       }
     })
@@ -980,18 +1088,22 @@ pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.border(0),
       attribute.align("center"),
       attribute.styles(margin),
-      attribute.styles(styles),
-      ..attrs
+      attribute.styles(table_styles),
+      ..table_attrs
     ],
     [
       html.tbody([], [
         html.tr([], [
           html.td(
+            [attribute.styles(margin), attribute.styles(td_styles), ..td_attrs],
             [
-              attribute.styles(margin),
-              attribute.styles(padding),
+              table_wrapper(
+                [
+                  attribute.styles(padding),
+                ],
+                children,
+              ),
             ],
-            children,
           ),
         ]),
       ]),
