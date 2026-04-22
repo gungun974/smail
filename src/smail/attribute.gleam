@@ -26,6 +26,9 @@ pub fn none() -> Attribute {
 /// To conditionally toggle classes on and off, you can use the [`classes`](#classes)
 /// function instead.
 ///
+/// > **Note**: Classes are not well supported accross all emails clients.
+/// > Prefer to avoid them when possible in favor of the [style module](./style.html)
+///
 /// > **Note**: unlike most attributes, multiple `class` attributes are merged
 /// > with any existing other classes on an element. Classes added _later_ in the
 /// > list will override classes added earlier.
@@ -38,6 +41,9 @@ pub fn class(name: String) -> Attribute {
 /// purposes. You can provide multiple classes as a space-separated list and any
 /// style rules that apply to any of the classes will be applied to the element.
 /// This function allows you to conditionally toggle classes on and off.
+///
+/// > **Note**: Classes are not well supported accross all emails clients.
+/// > Prefer to avoid them when possible in favor of the [style module](./style.html)
 ///
 /// > **Note**: unlike most attributes, multiple `class` attributes are merged
 /// > with any existing other classes on an element. Classes added _later_ in the
