@@ -38,7 +38,11 @@ import smail/vdom/vnode
 ///
 pub fn to_html(el: Element) -> String {
   "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
-  <> vnode.to_string(wrap_document(el))
+  <> vnode.to_html_string(wrap_document(el))
+}
+
+pub fn to_plain_text(el: Element) -> String {
+  vnode.to_plain_string(wrap_document(el))
 }
 
 /// Render the root `<html>` element.
