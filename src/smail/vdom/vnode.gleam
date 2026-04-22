@@ -519,12 +519,12 @@ fn to_plain_string_tree(
         _ -> string_tree.new()
       }
     }
-    Element(children:, ..) -> {
+    Element(tag:, children:, ..) -> {
       let effective_white_space = case get_element_white_space(node) {
         None -> white_space
         Some(ws) -> ws
       }
-      case get_element_display(node) {
+      let content = case get_element_display(node) {
         DisplayNewLine -> {
           let content =
             string_tree.new()
@@ -545,6 +545,13 @@ fn to_plain_string_tree(
           |> children_to_plain_string_tree(effective_white_space, children)
         }
         DisplayNone -> string_tree.new()
+      }
+
+      case tag {
+        "h1" -> content |> string_tree.prepend("# ")
+        "h2" -> content |> string_tree.prepend("## ")
+        "h3" -> content |> string_tree.prepend("### ")
+        _ -> content
       }
     }
     UnsafeInnerHtml(..) -> string_tree.new()
