@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: button plain email
+file: ./test/smail/email_test.gleam
+test_name: button_plain_email_test
+---
+Try Gleam: https://tour.gleam.run

@@ -1,0 +1,15 @@
+---
+version: 1.5.5
+title: full plain email
+file: ./test/smail/email_test.gleam
+test_name: full_plain_email_test
+---
+# Order confirmed
+
+Your order has been confirmed.
+
+------------------------------------------------------------------------
+
+ Item: Widget                        Price: $9.99                      
+
+View order: https://example.com/order

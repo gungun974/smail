@@ -1,0 +1,8 @@
+---
+version: 1.5.5
+title: simple table plain email
+file: ./test/smail/email_test.gleam
+test_name: simple_table_plain_email_test
+---
+| A | B |
+| C | D |

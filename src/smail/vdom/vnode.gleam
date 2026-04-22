@@ -458,6 +458,7 @@ pub fn to_plain_string(
   node
   |> to_plain_string_tree(WhiteSpaceNormal, wrap_column, enable_wrapping)
   |> string_tree.to_string
+  |> string.remove_suffix("\n\n")
   |> string.replace(plain_text_nbsp, " ")
 }
 
@@ -523,7 +524,7 @@ fn to_plain_string_tree(
         _ -> string_tree.new()
       }
     }
-    Element(tag:, children:, ..) -> {
+    Element(tag:, children:, attributes:, ..) -> {
       let effective_white_space = case get_element_white_space(node) {
         None -> white_space
         Some(ws) -> ws
@@ -547,7 +548,7 @@ fn to_plain_string_tree(
         }
 
         DisplayTable(Table) ->
-          render_to_plain_string_tree(
+          render_to_plain_string_table(
             white_space,
             wrap_column,
             enable_wrapping,
@@ -571,6 +572,16 @@ fn to_plain_string_tree(
         "h1" -> content |> string_tree.prepend("# ")
         "h2" -> content |> string_tree.prepend("## ")
         "h3" -> content |> string_tree.prepend("### ")
+        "a" ->
+          case
+            list.find(attributes, fn(attribute) { attribute.name == "href" })
+          {
+            Ok(link) ->
+              content
+              |> string_tree.append(": ")
+              |> string_tree.append(link.value)
+            Error(_) -> content
+          }
         _ -> content
       }
     }
@@ -587,6 +598,17 @@ fn to_plain_string_tree(
   }
 }
 
+fn is_full_width_presentation_table(node: Element) -> Bool {
+  case node {
+    Element(tag: "table", attributes:, ..) ->
+      list.any(attributes, fn(a) {
+        a.name == "role" && a.value == "presentation"
+      })
+      && get_element_is_full_width(node)
+    _ -> False
+  }
+}
+
 fn children_to_plain_string_tree(
   html: StringTree,
   white_space: CascadingWhiteSpace,
@@ -594,11 +616,23 @@ fn children_to_plain_string_tree(
   enable_wrapping: Bool,
   children: List(Element),
 ) -> StringTree {
-  use html, child <- list.fold(children, html)
-  string_tree.append_tree(
-    html,
-    to_plain_string_tree(child, white_space, wrap_column, enable_wrapping),
-  )
+  children
+  |> list.fold(#(html, False, False), fn(acc, child) {
+    let #(tree, prev_is_section, prev_ends_newline) = acc
+    let child_tree =
+      to_plain_string_tree(child, white_space, wrap_column, enable_wrapping)
+    let is_section = is_full_width_presentation_table(child)
+    let tree = case prev_is_section && is_section && !prev_ends_newline {
+      True -> string_tree.append(tree, "\n\n")
+      False -> tree
+    }
+    let ends_newline = case is_section {
+      True -> string.ends_with(string_tree.to_string(child_tree), "\n\n")
+      False -> False
+    }
+    #(string_tree.append_tree(tree, child_tree), is_section, ends_newline)
+  })
+  |> fn(acc) { acc.0 }
 }
 
 fn table_prepare_row_and_cell(
@@ -681,7 +715,7 @@ fn table_render_line(
   )
 }
 
-fn render_to_plain_string_tree(
+fn render_to_plain_string_table(
   white_space: CascadingWhiteSpace,
   wrap_column: Int,
   enable_wrapping: Bool,

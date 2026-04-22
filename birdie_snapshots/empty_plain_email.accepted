@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: empty plain email
+file: ./test/smail/email_test.gleam
+test_name: empty_plain_email_test
+---
+

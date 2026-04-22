@@ -1,0 +1,9 @@
+---
+version: 1.5.5
+title: advanced plain text narrow wrap config
+file: ./test/smail/email_test.gleam
+test_name: advanced_plain_text_narrow_wrap_test
+---
+This is a long line that might need
+wrapping depending on the configuration
+used when converting to plain text.

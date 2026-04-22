@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: link plain email
+file: ./test/smail/email_test.gleam
+test_name: link_plain_email_test
+---
+Visit the gleam tour: https://tour.gleam.run

@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: text plain email
+file: ./test/smail/email_test.gleam
+test_name: text_plain_email_test
+---
+Hoi

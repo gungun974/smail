@@ -290,8 +290,7 @@ fn layout(preview: Element, children: List(Element)) {
                   email.img([
                     attribute.alt("Lucy Mail"),
                     attribute.src("cid:lucymail.png"),
-                    attribute.height(120),
-                    attribute.border(0),
+                    style.height("120"),
                     attribute.align("center"),
                   ]),
                 ],

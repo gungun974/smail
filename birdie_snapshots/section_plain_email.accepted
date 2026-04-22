@@ -1,0 +1,9 @@
+---
+version: 1.5.5
+title: section plain email
+file: ./test/smail/email_test.gleam
+test_name: section_plain_email_test
+---
+Hoi
+
+Proute

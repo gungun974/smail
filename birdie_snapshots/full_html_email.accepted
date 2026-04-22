@@ -1,0 +1,117 @@
+---
+version: 1.5.5
+title: full html email
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <meta name="x-apple-disable-message-reformatting" />
+  </head>
+  <body style="background-color:#f6f6f6;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+      <tbody>
+        <tr>
+          <td style="background-color:#f6f6f6;">
+            <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0;">
+              Order confirmed!
+              <div>
+                 ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿
+              </div>
+            </div>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width:37.5em;" width="100%">
+              <tbody>
+                <tr style="width:100%;">
+                  <td>
+                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                      <tbody>
+                        <tr>
+                          <td style="style">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td style="padding:20px;">
+                                            <h1 style="font-size:36px;font-weight:bold;line-height:40px;margin:16px 0;">
+                                              Order confirmed
+                                            </h1>
+                                            <p border="none" style="font-size:14px;line-height:24px;border:none;text-decoration:none;">
+                                              Your order has been confirmed.
+                                            </p>
+                                            <hr border="none" style="width:100%;border:none;border-top:1px solid #eaeaea;" width="100%" />
+                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                              <tbody>
+                                                <tr>
+                                                  <td style="vertical-align:top;" valign="top" width="50%">
+                                                    <p border="none" style="font-size:14px;line-height:24px;border:none;text-decoration:none;">
+                                                      Item: Widget
+                                                    </p>
+                                                  </td>
+                                                  <td style="vertical-align:top;" valign="top" width="50%">
+                                                    <p border="none" style="font-size:14px;line-height:24px;border:none;text-decoration:none;">
+                                                      Price: $9.99
+                                                    </p>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                              <tbody>
+                                                <tr>
+                                                  <td>
+                                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                                      <tbody>
+                                                        <tr>
+                                                          <td style="style">
+                                                            <a bgcolor="#000" color="#fff" href="https://example.com/order" style="line-height:100%;text-decoration:none;display:inline-block;max-width:100%;mso-padding-alt:0px;background-color:#000;color:#fff;padding:12px 24px;" target="_blank">
+                                                              <span style="color:#fff;">
+                                                                <!--[if mso]>
+                                                                <i style="mso-font-width:400.0%;mso-text-raise:18.0" hidden>
+                                                                  &#8202;&#8202;&#8202;
+                                                                </i>
+                                                                <![endif]-->
+                                                              </span>
+                                                              <span color="#fff" style="color:#fff;max-width:100%;display:inline-block;line-height:120%;mso-padding-alt:0px;mso-text-raise:9.0;">
+                                                                View order
+                                                              </span>
+                                                              <span style="color:#fff;">
+                                                                <!--[if mso]>
+                                                                <i style="mso-font-width:400.0%" hidden>
+                                                                  &#8202;&#8202;&#8202;&#8203;
+                                                                </i>
+                                                                <![endif]-->
+                                                              </span>
+                                                            </a>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

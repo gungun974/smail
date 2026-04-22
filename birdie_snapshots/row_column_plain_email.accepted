@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: row column plain email
+file: ./test/smail/email_test.gleam
+test_name: row_column_plain_email_test
+---
+ Left                                Right                             

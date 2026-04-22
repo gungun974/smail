@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: h2 plain email
+file: ./test/smail/email_test.gleam
+test_name: h2_plain_email_test
+---
+## Heading 2

@@ -1,0 +1,7 @@
+---
+version: 1.5.5
+title: h3 plain email
+file: ./test/smail/email_test.gleam
+test_name: h3_plain_email_test
+---
+### Heading 3

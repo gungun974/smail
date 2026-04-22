@@ -1,0 +1,18 @@
+---
+version: 1.5.5
+title: body with styles html email
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <body style="background-color:#f6f6f6;padding:20px 0;">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+      <tbody>
+        <tr>
+          <td style="background-color:#f6f6f6;padding:20px 0;">
+            Colored Hoi
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+---
+version: 1.5.5
+title: nested table plain email
+file: ./test/smail/email_test.gleam
+test_name: nested_table_plain_email_test
+---
+| Outer A | | Inner 1 | Inner 2 | |
+|         | | Inner 3 | Inner 4 | |
+| Outer B | Outer C               |
