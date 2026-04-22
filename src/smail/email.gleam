@@ -392,6 +392,32 @@ pub fn body(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ```
 ///
 pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
+  let #(attrs, styles) = extract_styles(attrs)
+
+  let #(margin, styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "margin" -> True
+        "margin-left" -> True
+        "margin-right" -> True
+        "margin-top" -> True
+        "margin-bottom" -> True
+        _ -> False
+      }
+    })
+
+  let #(padding, styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "padding" -> True
+        "padding-left" -> True
+        "padding-right" -> True
+        "padding-top" -> True
+        "padding-bottom" -> True
+        _ -> False
+      }
+    })
+
   html.table(
     [
       attribute.role("presentation"),
@@ -401,12 +427,20 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.width("100%"),
       attribute.align("center"),
       style.max_width("37.5em"),
+      attribute.styles(margin),
+      attribute.styles(styles),
       ..attrs
     ],
     [
       html.tbody([], [
         html.tr([style.width("100%")], [
-          html.td([], children),
+          html.td(
+            [
+              attribute.styles(margin),
+              attribute.styles(padding),
+            ],
+            children,
+          ),
         ]),
       ]),
     ],
@@ -432,6 +466,32 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ```
 ///
 pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
+  let #(attrs, styles) = extract_styles(attrs)
+
+  let #(margin, styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "margin" -> True
+        "margin-left" -> True
+        "margin-right" -> True
+        "margin-top" -> True
+        "margin-bottom" -> True
+        _ -> False
+      }
+    })
+
+  let #(padding, styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "padding" -> True
+        "padding-left" -> True
+        "padding-right" -> True
+        "padding-top" -> True
+        "padding-bottom" -> True
+        _ -> False
+      }
+    })
+
   html.table(
     [
       attribute.role("presentation"),
@@ -440,12 +500,17 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.border(0),
       attribute.width("100%"),
       attribute.align("center"),
+      attribute.styles(margin),
+      attribute.styles(styles),
       ..attrs
     ],
     [
       html.tbody([], [
         html.tr([], [
-          html.td([], children),
+          html.td(
+            [attribute.styles(margin), attribute.styles(padding)],
+            children,
+          ),
         ]),
       ]),
     ],
@@ -881,6 +946,32 @@ pub fn column(attrs: List(Attribute), children: List(Element)) -> Element {
 /// ```
 ///
 pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
+  let #(attrs, styles) = extract_styles(attrs)
+
+  let #(margin, styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "margin" -> True
+        "margin-left" -> True
+        "margin-right" -> True
+        "margin-top" -> True
+        "margin-bottom" -> True
+        _ -> False
+      }
+    })
+
+  let #(padding, styles) =
+    list.partition(styles, fn(style) {
+      case style.0 {
+        "padding" -> True
+        "padding-left" -> True
+        "padding-right" -> True
+        "padding-top" -> True
+        "padding-bottom" -> True
+        _ -> False
+      }
+    })
+
   html.table(
     [
       attribute.role("presentation"),
@@ -888,9 +979,23 @@ pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.cellpadding(0),
       attribute.border(0),
       attribute.align("center"),
+      attribute.styles(margin),
+      attribute.styles(styles),
       ..attrs
     ],
-    [html.tbody([], [html.tr([], [html.td([], children)])])],
+    [
+      html.tbody([], [
+        html.tr([], [
+          html.td(
+            [
+              attribute.styles(margin),
+              attribute.styles(padding),
+            ],
+            children,
+          ),
+        ]),
+      ]),
+    ],
   )
 }
 
