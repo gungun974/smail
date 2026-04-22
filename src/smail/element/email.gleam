@@ -1,12 +1,12 @@
-//// Write HTML compliant email with peace of mind and [Lustre](https://hex.pm/packages/lustre) 😌
+//// This module provides ready-to-use, high-level components designed to make
+//// composing emails easier. Each component handles the underlying HTML table
+//// structure and cross-client quirks (Outlook MSO, Yahoo, AOL, Apple Mail,
+//// etc.) so you can focus on content rather than compatibility.
 ////
-//// This module provides a set of components that produce HTML output
-//// compatible with email clients. It handles the quirks of email rendering
-//// (Outlook MSO, Yahoo, AOL, Apple Mail, etc.) so you can write emails
-//// with ease of mind and less table.
-////
-//// Use `to_string` to render the final HTML string to send as the body
-//// of an HTML email.
+//// If you need something not covered by this module — such as a plain table
+//// layout or inline `<span>` elements — the lower-level
+//// [`smail/element/html`](./html.html) module is available, though you will
+//// have to handle email client compatibility yourself.
 
 import gleam/float
 import gleam/int
@@ -332,12 +332,12 @@ pub fn body(attrs: List(Attribute), children: List(Element)) -> Element {
     [
       html.table(
         [
-          attribute.align("center"),
+          style.text_align("center"),
           attribute.role("presentation"),
           attribute.cellspacing(0),
           attribute.cellpadding(0),
-          attribute.width("100%"),
-          attribute.border(0),
+          style.width("100%"),
+          style.border("0"),
         ],
         [
           html.tbody([], [
@@ -428,9 +428,9 @@ pub fn container(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.role("presentation"),
       attribute.cellspacing(0),
       attribute.cellpadding(0),
-      attribute.border(0),
-      attribute.width("100%"),
-      attribute.align("center"),
+      style.border("0"),
+      style.width("100%"),
+      style.text_align("center"),
       style.max_width("37.5em"),
       attribute.styles(margin),
       attribute.styles(table_styles),
@@ -532,9 +532,9 @@ pub fn section(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.role("presentation"),
       attribute.cellspacing(0),
       attribute.cellpadding(0),
-      attribute.border(0),
-      attribute.width("100%"),
-      attribute.align("center"),
+      style.border("0"),
+      style.width("100%"),
+      style.text_align("center"),
       attribute.styles(margin),
       attribute.styles(table_styles),
       ..table_attrs
@@ -565,8 +565,8 @@ fn table_wrapper(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.role("presentation"),
       attribute.cellspacing(0),
       attribute.cellpadding(0),
-      attribute.border(0),
-      attribute.width("100%"),
+      style.border("0"),
+      style.width("100%"),
     ],
     [
       html.tbody([], [
@@ -953,8 +953,8 @@ pub fn row(attrs: List(Attribute), children: List(Element)) -> Element {
       // attribute.role("presentation"),
       attribute.cellspacing(0),
       attribute.cellpadding(0),
-      attribute.border(0),
-      attribute.width("100%"),
+      style.border("0"),
+      style.width("100%"),
       ..attrs
     ],
     [html.tbody([], [html.tr([], children)])],
@@ -1064,8 +1064,8 @@ pub fn center(attrs: List(Attribute), children: List(Element)) -> Element {
       attribute.role("presentation"),
       attribute.cellspacing(0),
       attribute.cellpadding(0),
-      attribute.border(0),
-      attribute.align("center"),
+      style.border("0"),
+      style.text_align("center"),
       attribute.styles(margin),
       attribute.styles(table_styles),
       ..table_attrs

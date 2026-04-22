@@ -103,6 +103,12 @@ pub fn lang(language: String) -> Attribute {
 /// element. If either the property name or value is empty, this attribute will
 /// be ignored.
 ///
+/// > **Note**: Style properties that have been officially tested for email
+/// > client compatibility are available in the [`smail/style`](./style.html)
+/// > module. It is strongly recommended to use `smail/style` whenever possible.
+/// > This function remains available as an escape hatch for any property not
+/// > covered by that module.
+///
 /// > **Note**: unlike most attributes, multiple `style` attributes are merged
 /// > with any existing other styles on an element. Styles added _later_ in the
 /// > list will override styles added earlier.
@@ -116,6 +122,12 @@ pub fn style(property: String, value: String) -> Attribute {
 
 /// Provide a list of property-value pairs to be used as inline styles for the
 /// element. Empty properties or values are omitted from the final style string.
+///
+/// > **Note**: Style properties that have been officially tested for email
+/// > client compatibility are available in the [`smail/style`](./style.html)
+/// > module. It is strongly recommended to use `smail/style` whenever possible.
+/// > This function remains available as an escape hatch for any property not
+/// > covered by that module.
 ///
 /// > **Note**: unlike most attributes, multiple `styles` attributes are merged
 /// > with any existing other styles on an element. Styles added _later_ in the
@@ -197,18 +209,6 @@ pub fn src(url: String) -> Attribute {
   attribute("src", url)
 }
 
-/// Specifies the width of the element.
-///
-pub fn width(value: String) -> Attribute {
-  attribute("width", value)
-}
-
-/// Specifies the height of the element in pixels.
-///
-pub fn height(value: Int) -> Attribute {
-  attribute("height", int.to_string(value))
-}
-
 /// Specifies horizontal whitespace in pixels on the left and right sides of
 /// an image. Legacy attribute still useful for email client compatibility.
 ///
@@ -268,43 +268,11 @@ pub fn charset(value: String) -> Attribute {
 
 // TABLE ATTRIBUTES ------------------------------------------------------------
 
-/// Specifies the alignment of an element's content. Commonly used on tables,
-/// table cells, and images in email clients that have limited CSS support.
-///
-/// | Value    | Description                 |
-/// |----------|-----------------------------|
-/// | "left"   | Aligns content to the left  |
-/// | "center" | Centers content             |
-/// | "right"  | Aligns content to the right |
-///
-pub fn align(value: String) -> Attribute {
-  attribute("align", value)
-}
-
-/// Specifies the vertical alignment of content within a table cell.
-///
-/// | Value    | Description                      |
-/// |----------|----------------------------------|
-/// | "top"    | Aligns content to the top        |
-/// | "middle" | Centers content vertically       |
-/// | "bottom" | Aligns content to the bottom     |
-///
-pub fn valign(value: String) -> Attribute {
-  attribute("valign", value)
-}
-
 /// Specifies a background image URL using an HTML attribute. Used on tables
 /// and table cells for email clients that support it.
 ///
 pub fn background(url: String) -> Attribute {
   attribute("background", url)
-}
-
-/// Specifies the border width of a table or image. Setting `border(0)` on
-/// images is a common email best practice to remove default link borders.
-///
-pub fn border(value: Int) -> Attribute {
-  attribute("border", int.to_string(value))
 }
 
 /// Specifies the space between the cell walls and the cell content in a table.

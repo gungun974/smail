@@ -12,7 +12,7 @@ title: font html email
     </style>
   </head>
   <body style="style">
-    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="text-align:center;width:100%;border:0;" width="100%">
       <tbody>
         <tr>
           <td style="style">

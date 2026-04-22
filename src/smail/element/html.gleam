@@ -1,3 +1,13 @@
+//// This module exposes low-level HTML elements that can be used directly when
+//// needed. Because HTML in emails is old and full of
+//// client-specific quirks, it is strongly recommended to use the
+//// [`smail/element/email`](./email.html) module instead, which handles all
+//// compatibility concerns for you.
+////
+//// That said, this module is useful when you need something not covered by
+//// `smail/element/email` — for example, building a plain table layout or
+//// using a `<span>` for inline styling.
+
 // IMPORTS ---------------------------------------------------------------------
 
 import smail/attribute.{type Attribute}

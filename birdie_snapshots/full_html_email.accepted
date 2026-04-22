@@ -9,7 +9,7 @@ title: full html email
     <meta name="x-apple-disable-message-reformatting" />
   </head>
   <body style="background-color:#f6f6f6;">
-    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="text-align:center;width:100%;border:0;" width="100%">
       <tbody>
         <tr>
           <td style="background-color:#f6f6f6;">
@@ -19,19 +19,19 @@ title: full html email
                  ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿ ‌​‍‎‏﻿
               </div>
             </div>
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width:37.5em;" width="100%">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border:0;width:100%;text-align:center;max-width:37.5em;" width="100%">
               <tbody>
                 <tr style="width:100%;">
                   <td>
-                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border:0;width:100%;" width="100%">
                       <tbody>
                         <tr>
                           <td style="style">
-                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border:0;width:100%;text-align:center;" width="100%">
                               <tbody>
                                 <tr>
                                   <td>
-                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border:0;width:100%;" width="100%">
                                       <tbody>
                                         <tr>
                                           <td style="padding:20px;">
@@ -42,15 +42,15 @@ title: full html email
                                               Your order has been confirmed.
                                             </p>
                                             <hr border="none" style="width:100%;border:none;border-top:1px solid #eaeaea;" width="100%" />
-                                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <table border="0" cellpadding="0" cellspacing="0" style="border:0;width:100%;" width="100%">
                                               <tbody>
                                                 <tr>
-                                                  <td style="vertical-align:top;" valign="top" width="50%">
+                                                  <td style="vertical-align:top;width:50%;" valign="top" width="50%">
                                                     <p border="none" style="font-size:14px;line-height:24px;border:none;text-decoration:none;">
                                                       Item: Widget
                                                     </p>
                                                   </td>
-                                                  <td style="vertical-align:top;" valign="top" width="50%">
+                                                  <td style="vertical-align:top;width:50%;" valign="top" width="50%">
                                                     <p border="none" style="font-size:14px;line-height:24px;border:none;text-decoration:none;">
                                                       Price: $9.99
                                                     </p>
@@ -58,11 +58,11 @@ title: full html email
                                                 </tr>
                                               </tbody>
                                             </table>
-                                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border:0;text-align:center;">
                                               <tbody>
                                                 <tr>
                                                   <td>
-                                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border:0;width:100%;" width="100%">
                                                       <tbody>
                                                         <tr>
                                                           <td style="style">

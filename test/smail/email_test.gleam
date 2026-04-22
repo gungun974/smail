@@ -195,7 +195,7 @@ fn img_email() {
         attribute.alt("Lucy Mail"),
         attribute.src("cid:lucymail.png"),
         style.height("120"),
-        attribute.align("center"),
+        style.text_align("center"),
       ]),
     ]),
   ])
@@ -379,8 +379,8 @@ fn row_column_email() {
   email.html([], [
     email.body([], [
       email.row([], [
-        email.column([attribute.width("50%")], [html.text("Left")]),
-        email.column([attribute.width("50%")], [html.text("Right")]),
+        email.column([style.width("50%")], [html.text("Left")]),
+        email.column([style.width("50%")], [html.text("Right")]),
       ]),
     ]),
   ])
@@ -514,10 +514,10 @@ fn full_email() {
           email.text([], [html.text("Your order has been confirmed.")]),
           email.hr([]),
           email.row([], [
-            email.column([attribute.width("50%")], [
+            email.column([style.width("50%")], [
               email.text([], [html.text("Item: Widget")]),
             ]),
-            email.column([attribute.width("50%")], [
+            email.column([style.width("50%")], [
               email.text([], [html.text("Price: $9.99")]),
             ]),
           ]),
