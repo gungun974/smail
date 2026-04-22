@@ -1,5 +1,6 @@
 import filepath
 import gleam/erlang/application
+import gleam/io
 import gleam/option.{Some}
 import lumenmail/message
 import lumenmail/smtp
@@ -11,6 +12,13 @@ import smail/email
 import smail/style
 
 pub fn main() {
+  let mail = email("Sara")
+
+  io.println(
+    mail
+    |> email.to_plain_text(),
+  )
+
   let assert Ok(priv_directory) = application.priv_directory("exemple")
 
   let img = case
@@ -25,7 +33,7 @@ pub fn main() {
     |> message.from_name_email("Lucy", "lucy@example.com")
     |> message.to_email("sara@example.com")
     |> message.subject("Hey, psst!")
-    |> message.html_body(email("Sara") |> email.to_html())
+    |> message.html_body(mail |> email.to_html())
     |> message.inline_attachment(
       "lucymail.png",
       message.ApplicationOctetStream,
