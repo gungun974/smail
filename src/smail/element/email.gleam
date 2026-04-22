@@ -27,7 +27,7 @@ import smail/style
 /// ## Example
 ///
 /// ```gleam
-/// import smail/email
+/// import smail/element/email
 ///
 /// email.html([], [
 ///   email.head([], []),
@@ -196,7 +196,7 @@ fn font_style_to_string(style: FontStyle) -> String {
 ///
 /// ```gleam
 /// import gleam/option
-/// import smail/email
+/// import smail/element/email
 ///
 /// email.font(
 ///   family: "Josefin Sans",

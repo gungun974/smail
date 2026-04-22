@@ -95,14 +95,15 @@ pub fn unsafe_raw_html(
 /// ## Example
 ///
 /// ```gleam
-/// import smail/email
+/// import smail/element
+/// import smail/element/email
 /// import smail/element/html
 ///
 /// email.html([], [
 ///   email.head([], []),
 ///   email.body([], [html.text("Hello!")]),
 /// ])
-/// |> email.to_html
+/// |> element.to_html
 /// ```
 ///
 pub fn to_html(el: Element) -> String {
@@ -116,6 +117,20 @@ pub fn to_html(el: Element) -> String {
 /// Use [`advanced_to_plain_text`](#advanced_to_plain_text) to customise the
 /// wrapping behaviour.
 ///
+/// ## Example
+///
+/// ```gleam
+/// import smail/element
+/// import smail/element/email
+/// import smail/element/html
+///
+/// email.html([], [
+///   email.head([], []),
+///   email.body([], [html.text("Hello!")]),
+/// ])
+/// |> element.to_plain_text
+/// ```
+///
 pub fn to_plain_text(el: Element) -> String {
   vnode.to_plain_string(el, 72, True)
 }
@@ -127,6 +142,23 @@ pub type PlainTextConfig {
 /// Like [`to_plain_text`](#to_plain_text) but accepts a `PlainTextConfig` to
 /// control the column at which lines are wrapped and whether wrapping is
 /// enabled at all.
+///
+/// ## Example
+///
+/// ```gleam
+/// import smail/element
+/// import smail/element/email
+/// import smail/element/html
+///
+/// email.html([], [
+///   email.head([], []),
+///   email.body([], [html.text("Hello!")]),
+/// ])
+/// |> element.advanced_to_plain_text(element.PlainTextConfig(
+///   wrap_column: 80,
+///   enable_wrapping: True,
+/// ))
+/// ```
 ///
 pub fn advanced_to_plain_text(el: Element, config: PlainTextConfig) -> String {
   vnode.to_plain_string(el, config.wrap_column, config.enable_wrapping)
