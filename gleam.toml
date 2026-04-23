@@ -1,5 +1,5 @@
 name = "smail"
-version = "1.0.0"
+version = "2.0.0"
 
 description = "Write HTML compliant email with peace of mind like Lustre 😌"
 licences = ["Apache-2.0"]
