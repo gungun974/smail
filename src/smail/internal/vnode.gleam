@@ -81,16 +81,48 @@ type CascadingStyle {
 
 // HTML RENDERING ------------------------------------------------------------
 
+const html_line_length_limit = 998
+
 pub fn to_html_string(node: Element) -> String {
-  node
-  |> to_html_string_tree(None)
-  |> string_tree.to_string
+  string_tree.to_string(to_html_string_tree(node, None, 0).0)
+}
+
+fn append_tree_with_limit(
+  html_length: #(StringTree, Int),
+  html: StringTree,
+) -> #(StringTree, Int) {
+  let #(current_html, current_length) = html_length
+  let length = string_tree.byte_size(html)
+
+  case length == 0 {
+    True -> html_length
+
+    False -> {
+      case
+        current_length > 0 && current_length + length > html_line_length_limit
+      {
+        True -> #(
+          current_html
+            |> string_tree.append("\n")
+            |> string_tree.append_tree(html),
+          length,
+        )
+
+        False -> #(
+          current_html
+            |> string_tree.append_tree(html),
+          current_length + length,
+        )
+      }
+    }
+  }
 }
 
 fn to_html_string_tree(
   node: Element,
   cascading_style: Option(CascadingStyle),
-) -> StringTree {
+  current_length: Int,
+) -> #(StringTree, Int) {
   let cascading_style = case node {
     Element(attributes:, ..) | UnsafeInnerHtml(attributes:, ..) -> {
       case
@@ -105,15 +137,24 @@ fn to_html_string_tree(
         Error(_) -> cascading_style
       }
     }
+
     _ -> cascading_style
   }
 
   case node {
-    Text(content: "") -> string_tree.new()
-    Text(content:) -> string_tree.from_string(houdini.escape(content))
+    Text(content: "") -> #(string_tree.new(), current_length)
+
+    Text(content:) -> {
+      let line = houdini.escape(content)
+
+      append_tree_with_limit(
+        #(string_tree.new(), current_length),
+        string_tree.from_string(line),
+      )
+    }
 
     Element(tag:, attributes:, void:, ..) if void -> {
-      let html = string_tree.from_string("<" <> tag)
+      let tag_open = string_tree.from_string("<" <> tag)
 
       let attributes = case cascading_style {
         Some(style) ->
@@ -121,18 +162,20 @@ fn to_html_string_tree(
             vattr.attribute("style", "color:" <> style.color <> ";"),
             ..attributes
           ])
+
         None -> attributes
       }
 
-      let attributes = vattr.to_string_tree(attributes)
+      let #(html, length) =
+        append_tree_with_limit(#(string_tree.new(), current_length), tag_open)
 
-      html
-      |> string_tree.append_tree(attributes)
-      |> string_tree.append(" />")
+      let #(html, length) = vattr.to_string_tree(attributes, #(html, length))
+
+      #(html |> string_tree.append(" />"), length + 3)
     }
 
     Element(tag:, attributes:, children:, ..) -> {
-      let html = string_tree.from_string("<" <> tag)
+      let tag_open = string_tree.from_string("<" <> tag)
 
       let has_text_children =
         list.any(children, fn(child) {
@@ -148,20 +191,32 @@ fn to_html_string_tree(
             vattr.attribute("style", "color:" <> style.color <> ";"),
             ..attributes
           ])
+
         _ -> attributes
       }
 
-      let attributes = vattr.to_string_tree(attributes)
+      let #(html, length) =
+        append_tree_with_limit(#(string_tree.new(), current_length), tag_open)
 
-      html
-      |> string_tree.append_tree(attributes)
-      |> string_tree.append(">")
-      |> children_to_html_string_tree(cascading_style, children)
-      |> string_tree.append("</" <> tag <> ">")
+      let #(html, length) = vattr.to_string_tree(attributes, #(html, length))
+
+      let html = html |> string_tree.append(">")
+      let length = length + 1
+
+      let #(children_html, length) =
+        children_to_html_string_tree(cascading_style, children, length)
+
+      let html =
+        html
+        |> string_tree.append_tree(children_html)
+
+      let post_html = string_tree.from_string("</" <> tag <> ">")
+
+      append_tree_with_limit(#(html, length), post_html)
     }
 
     UnsafeInnerHtml(tag:, attributes:, inner_html:) -> {
-      let html = string_tree.from_string("<" <> tag)
+      let tag_open = string_tree.from_string("<" <> tag)
 
       let attributes = case cascading_style {
         Some(style) ->
@@ -169,37 +224,55 @@ fn to_html_string_tree(
             vattr.attribute("style", "color:" <> style.color <> ";"),
             ..attributes
           ])
+
         None -> attributes
       }
 
-      let attributes = vattr.to_string_tree(attributes)
+      let #(html, length) =
+        append_tree_with_limit(#(string_tree.new(), current_length), tag_open)
 
-      html
-      |> string_tree.append_tree(attributes)
-      |> string_tree.append(">")
-      |> string_tree.append(inner_html)
-      |> string_tree.append("</" <> tag <> ">")
+      let #(html, length) = vattr.to_string_tree(attributes, #(html, length))
+
+      let html = html |> string_tree.append(">")
+      let length = length + 1
+
+      let #(html, length) =
+        append_tree_with_limit(
+          #(html, length),
+          string_tree.from_string(inner_html),
+        )
+
+      let post_html = string_tree.from_string("</" <> tag <> ">")
+
+      append_tree_with_limit(#(html, length), post_html)
     }
 
-    Fragment(children:) -> {
-      marker_comment("smail:fragment")
-      |> children_to_html_string_tree(cascading_style, children)
-      |> string_tree.append_tree(marker_comment("/smail:fragment"))
-    }
+    Fragment(children:) ->
+      children_to_html_string_tree(cascading_style, children, current_length)
   }
 }
 
 fn children_to_html_string_tree(
-  html: StringTree,
   cascading_style: Option(CascadingStyle),
   children: List(Element),
-) -> StringTree {
-  use html, child <- list.fold(children, html)
-  string_tree.append_tree(html, to_html_string_tree(child, cascading_style))
-}
+  current_length: Int,
+) -> #(StringTree, Int) {
+  list.fold(
+    children,
+    #(string_tree.new(), current_length),
+    fn(html_length, child) {
+      let #(current_html, current_length) = html_length
 
-fn marker_comment(label: String) {
-  string_tree.from_string("<!-- " <> label <> " -->")
+      let #(html, length) =
+        to_html_string_tree(child, cascading_style, current_length)
+
+      #(
+        current_html
+          |> string_tree.append_tree(html),
+        length,
+      )
+    },
+  )
 }
 
 // PLAIN RENDERING ------------------------------------------------------------
@@ -410,7 +483,9 @@ type CascadingWhiteSpace {
   WhiteSpacePreLine
 }
 
-fn get_element_white_space(node: Element) -> option.Option(CascadingWhiteSpace) {
+fn get_element_white_space(
+  node: Element,
+) -> option.Option(CascadingWhiteSpace) {
   case node {
     Element(tag:, attributes:, ..) -> {
       case

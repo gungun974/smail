@@ -1,5 +1,7 @@
 import birdie
+import gleam/list
 import gleam/option
+import gleam/string
 import smail/attribute
 import smail/email
 import smail/html
@@ -7,8 +9,17 @@ import smail/style
 import smail_format
 
 fn html_snap(content content: String, title title: String) {
-  let assert Ok(content) = smail_format.format_html(content)
+  let assert Ok(content) =
+    smail_format.format_html(content |> string.split("\n") |> string.join(""))
   birdie.snap(content: content, title: title)
+}
+
+fn assert_html_line_length_limit(html: String) {
+  string.split(html, "\n")
+  |> list.map(fn(line) {
+    assert string.length(line) <= 998
+  })
+  html
 }
 
 fn empty_email() {
@@ -17,6 +28,7 @@ fn empty_email() {
 
 pub fn empty_html_email_test() {
   email.to_html(empty_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "empty html email")
 }
 
@@ -35,6 +47,7 @@ fn paragraph_email() {
 
 pub fn paragraph_html_email_test() {
   email.to_html(paragraph_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "paragraph html email")
 }
 
@@ -54,6 +67,7 @@ fn head_email() {
 
 pub fn head_html_email_test() {
   email.to_html(head_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "head html email")
 }
 
@@ -73,6 +87,7 @@ fn head_with_extra_email() {
 
 pub fn head_with_extra_html_email_test() {
   email.to_html(head_with_extra_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "head with extra html email")
 }
 
@@ -86,6 +101,7 @@ fn body_email() {
 
 pub fn body_html_email_test() {
   email.to_html(body_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "body html email")
 }
 
@@ -106,6 +122,7 @@ fn body_with_styles_email() {
 
 pub fn body_with_styles_html_email_test() {
   email.to_html(body_with_styles_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "body with styles html email")
 }
 
@@ -121,6 +138,7 @@ fn container_email() {
 
 pub fn container_html_email_test() {
   email.to_html(container_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "container html email")
 }
 
@@ -143,6 +161,7 @@ fn container_with_padding_email() {
 
 pub fn container_with_padding_html_email_test() {
   email.to_html(container_with_padding_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "container with padding html email")
 }
 
@@ -159,6 +178,7 @@ fn section_email() {
 
 pub fn section_html_email_test() {
   email.to_html(section_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "section html email")
 }
 
@@ -182,6 +202,7 @@ fn section_with_styles_email() {
 
 pub fn section_with_styles_html_email_test() {
   email.to_html(section_with_styles_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "section with styles html email")
 }
 
@@ -202,6 +223,7 @@ fn img_email() {
 
 pub fn img_html_email_test() {
   email.to_html(img_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "img html email")
 }
 
@@ -219,6 +241,7 @@ fn hr_email() {
 
 pub fn hr_html_email_test() {
   email.to_html(hr_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "hr html email")
 }
 
@@ -241,6 +264,7 @@ fn link_email() {
 
 pub fn link_html_email_test() {
   email.to_html(link_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "link html email")
 }
 
@@ -263,6 +287,7 @@ fn preview_short_email() {
 
 pub fn preview_short_html_email_test() {
   email.to_html(preview_short_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "preview short html email")
 }
 
@@ -280,6 +305,7 @@ fn preview_long_email() {
 
 pub fn preview_long_html_email_test() {
   email.to_html(preview_long_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "preview long html email")
 }
 
@@ -304,6 +330,7 @@ fn button_email() {
 
 pub fn button_html_email_test() {
   email.to_html(button_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "button html email")
 }
 
@@ -324,6 +351,7 @@ fn h1_email() {
 
 pub fn h1_html_email_test() {
   email.to_html(h1_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "h1 html email")
 }
 
@@ -344,6 +372,7 @@ fn h2_email() {
 
 pub fn h2_html_email_test() {
   email.to_html(h2_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "h2 html email")
 }
 
@@ -364,6 +393,7 @@ fn h3_email() {
 
 pub fn h3_html_email_test() {
   email.to_html(h3_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "h3 html email")
 }
 
@@ -387,6 +417,7 @@ fn row_column_email() {
 
 pub fn row_column_html_email_test() {
   email.to_html(row_column_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "row column html email")
 }
 
@@ -411,6 +442,7 @@ fn center_email() {
 
 pub fn center_html_email_test() {
   email.to_html(center_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "center html email")
 }
 
@@ -441,6 +473,7 @@ fn font_email() {
 
 pub fn font_html_email_test() {
   email.to_html(font_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "font html email")
 }
 
@@ -463,6 +496,7 @@ fn font_with_weight_and_style_email() {
 
 pub fn font_with_weight_and_style_html_email_test() {
   email.to_html(font_with_weight_and_style_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "font with weight and style html email")
 }
 
@@ -502,41 +536,6 @@ pub fn advanced_plain_text_narrow_wrap_test() {
 
 // ------------------------------
 
-fn full_email() {
-  email.html([], [
-    email.head([], []),
-    email.body([style.background_color("#f6f6f6")], [
-      email.preview("Order confirmed!"),
-      email.container([], [
-        email.section([style.padding("20px")], [
-          email.h1([], [html.text("Order confirmed")]),
-          email.paragraph([], [html.text("Your order has been confirmed.")]),
-          email.hr([]),
-          email.row([], [
-            email.column([style.width("50%")], [
-              email.paragraph([], [html.text("Item: Widget")]),
-            ]),
-            email.column([style.width("50%")], [
-              email.paragraph([], [html.text("Price: $9.99")]),
-            ]),
-          ]),
-          email.center([], [
-            email.button(
-              [
-                style.background_color("#000"),
-                style.color("#fff"),
-                style.padding("12px 24px"),
-                attribute.href("https://example.com/order"),
-              ],
-              [html.text("View order")],
-            ),
-          ]),
-        ]),
-      ]),
-    ]),
-  ])
-}
-
 fn simple_table_email() {
   email.html([], [
     email.body([], [
@@ -556,6 +555,7 @@ fn simple_table_email() {
 
 pub fn simple_table_html_email_test() {
   email.to_html(simple_table_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "simple table html email")
 }
 
@@ -593,6 +593,7 @@ fn full_table_email() {
 
 pub fn full_table_html_email_test() {
   email.to_html(full_table_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "full table html email")
 }
 
@@ -633,6 +634,7 @@ fn nested_table_email() {
 
 pub fn nested_table_html_email_test() {
   email.to_html(nested_table_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "nested table html email")
 }
 
@@ -643,8 +645,44 @@ pub fn nested_table_plain_email_test() {
 
 // ------------------------------
 
+fn full_email() {
+  email.html([], [
+    email.head([], []),
+    email.body([style.background_color("#f6f6f6")], [
+      email.preview("Order confirmed!"),
+      email.container([], [
+        email.section([style.padding("20px")], [
+          email.h1([], [html.text("Order confirmed")]),
+          email.paragraph([], [html.text("Your order has been confirmed.")]),
+          email.hr([]),
+          email.row([], [
+            email.column([style.width("50%")], [
+              email.paragraph([], [html.text("Item: Widget")]),
+            ]),
+            email.column([style.width("50%")], [
+              email.paragraph([], [html.text("Price: $9.99")]),
+            ]),
+          ]),
+          email.center([], [
+            email.button(
+              [
+                style.background_color("#000"),
+                style.color("#fff"),
+                style.padding("12px 24px"),
+                attribute.href("https://example.com/order"),
+              ],
+              [html.text("View order")],
+            ),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+
 pub fn full_html_email_test() {
   email.to_html(full_email())
+  |> assert_html_line_length_limit
   |> html_snap(title: "full html email")
 }
 

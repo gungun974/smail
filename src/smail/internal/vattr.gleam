@@ -108,16 +108,47 @@ pub fn compare(a: Attribute, b: Attribute) -> Order {
 
 // STRING RENDERING ------------------------------------------------------------
 
-pub fn to_string_tree(attributes: List(Attribute)) -> StringTree {
-  use html, attr <- list.fold(attributes, string_tree.new())
+const html_line_length_limit = 998
 
-  case attr {
-    Attribute(name: "", ..) -> html
-    Attribute(name:, value: "") ->
-      string_tree.append(html, " " <> name <> "=\"" <> name <> "\"")
-    Attribute(name:, value:) ->
-      string_tree.append(html, {
-        " " <> name <> "=\"" <> houdini.escape(value) <> "\""
-      })
+pub fn to_string_tree(
+  attributes: List(Attribute),
+  html_length: #(StringTree, Int),
+) -> #(StringTree, Int) {
+  list.fold(attributes, html_length, fn(hl, attr) {
+    case attr {
+      Attribute(name: "", ..) -> hl
+      Attribute(name:, value: "") ->
+        append_attr_with_limit(
+          hl,
+          string_tree.from_string(" " <> name <> "=\"" <> name <> "\""),
+        )
+      Attribute(name:, value:) ->
+        append_attr_with_limit(
+          hl,
+          string_tree.from_string(
+            " " <> name <> "=\"" <> houdini.escape(value) <> "\"",
+          ),
+        )
+    }
+  })
+}
+
+fn append_attr_with_limit(
+  html_length: #(StringTree, Int),
+  attr: StringTree,
+) -> #(StringTree, Int) {
+  let #(current_html, current_length) = html_length
+  let length = string_tree.byte_size(attr)
+  case current_length > 0 && current_length + length > html_line_length_limit {
+    True -> #(
+      current_html
+        |> string_tree.append("\n")
+        |> string_tree.append_tree(attr),
+      length,
+    )
+    False -> #(
+      current_html |> string_tree.append_tree(attr),
+      current_length + length,
+    )
   }
 }
